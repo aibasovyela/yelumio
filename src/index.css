@@ -239,8 +239,8 @@
   /* Icon container */
   .icon-box {
     @apply w-14 h-14 rounded-2xl flex items-center justify-center;
-    background: hsl(var(--primary) / 0.15);
-    color: hsl(var(--foreground));
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 
   /* Accent text */
