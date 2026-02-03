@@ -1,6 +1,7 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
-import { Check, Star, Users, Video, FileText, MessageCircle, Zap } from "lucide-react";
+import { Check, Star, Users, Video, FileText, MessageCircle, Zap, Briefcase, Sparkles, Crown } from "lucide-react";
+
 const basePlan = {
   name: "Базовый",
   price: "70 000",
@@ -25,6 +26,7 @@ const basePlan = {
     text: "Обратная связь по работам"
   }]
 };
+
 const proPlan = {
   name: "PRO / Mentor",
   price: "120 000",
@@ -53,6 +55,37 @@ const proPlan = {
     text: "Ускоренный рост и глубина"
   }]
 };
+
+const elitePlan = {
+  name: "ELITE / Studio",
+  price: "200 000",
+  currency: "₸",
+  highlight: "Работа как с креативной студией",
+  description: "Это уже не просто обучение, а совместное продакшн-мышление.",
+  features: [{
+    icon: Check,
+    text: "Всё из тарифа PRO / Mentor"
+  }, {
+    icon: Briefcase,
+    text: "1 реальный платный заказ от компании (40 000–60 000 ₸)",
+    sub: "портфолио, клиенты, бренд — создаем на деле"
+  }, {
+    icon: Sparkles,
+    text: "Совместная сборка 1 креатива «под ключ»",
+    sub: "идея → промпт → визуал → видео → звук → финал"
+  }, {
+    icon: Zap,
+    text: "Разбор промптов и пайплайна до идеала"
+  }, {
+    icon: Star,
+    text: "Приоритетная обратная связь"
+  }, {
+    icon: Crown,
+    text: "Личное видение автора курса"
+  }],
+  footer: "Тем, кто хочет результат уровня студии, а не просто обучение."
+};
+
 export const PricingSection = () => {
   return <section className="section-padding">
       <div className="container">
@@ -69,15 +102,15 @@ export const PricingSection = () => {
         </ScrollReveal>
 
         {/* Pricing cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* Base Plan */}
           <ScrollReveal delay={100}>
-            <GlassCard className="p-8 space-y-6 h-full">
+            <GlassCard className="p-6 md:p-8 space-y-6 h-full">
               <div>
                 <h3 className="text-2xl font-bold">{basePlan.name}</h3>
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">{basePlan.price}</span>
-                  <span className="text-xl text-muted-foreground">{basePlan.currency}</span>
+                  <span className="text-3xl md:text-4xl font-bold">{basePlan.price}</span>
+                  <span className="text-lg text-muted-foreground">{basePlan.currency}</span>
                 </div>
               </div>
 
@@ -100,9 +133,9 @@ export const PricingSection = () => {
           <ScrollReveal delay={200}>
             <div className="relative h-full">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-primary/30 rounded-3xl blur-lg opacity-50" />
-              <GlassCard className="relative p-8 space-y-6 border-primary/30 h-full">
+              <GlassCard className="relative p-6 md:p-8 space-y-6 border-primary/30 h-full">
                 <div className="absolute -top-3 right-6">
-                  <span className="rounded-full bg-primary text-primary-foreground font-semibold text-base py-[5px] px-px">
+                  <span className="rounded-full bg-primary text-primary-foreground font-semibold text-sm px-3 py-1">
                     Рекомендуем
                   </span>
                 </div>
@@ -111,8 +144,8 @@ export const PricingSection = () => {
                   <h3 className="text-2xl font-bold">{proPlan.name}</h3>
                   <p className="text-sm text-primary font-medium mt-1">{proPlan.highlight}</p>
                   <div className="mt-4 flex items-baseline gap-1">
-                    <span className="text-4xl font-bold">{proPlan.price}</span>
-                    <span className="text-xl text-muted-foreground">{proPlan.currency}</span>
+                    <span className="text-3xl md:text-4xl font-bold">{proPlan.price}</span>
+                    <span className="text-lg text-muted-foreground">{proPlan.currency}</span>
                   </div>
                 </div>
 
@@ -131,6 +164,53 @@ export const PricingSection = () => {
 
                 <p className="text-xs text-center text-muted-foreground">
                   Подходит тем, кто хочет максимум результата и личный разбор
+                </p>
+              </GlassCard>
+            </div>
+          </ScrollReveal>
+
+          {/* Elite Plan */}
+          <ScrollReveal delay={300}>
+            <div className="relative h-full">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#dffb24]/60 to-[#dffb24]/30 rounded-3xl blur-lg opacity-60" />
+              <GlassCard className="relative p-6 md:p-8 space-y-6 border-[#dffb24]/50 h-full">
+                <div className="absolute -top-3 right-6">
+                  <span className="rounded-full bg-[#dffb24] text-foreground font-semibold text-sm px-3 py-1">
+                    Premium
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold">{elitePlan.name}</h3>
+                  <p className="text-sm text-[#9ab800] font-medium mt-1">{elitePlan.highlight}</p>
+                  <div className="mt-4 flex items-baseline gap-1">
+                    <span className="text-3xl md:text-4xl font-bold">{elitePlan.price}</span>
+                    <span className="text-lg text-muted-foreground">{elitePlan.currency}</span>
+                  </div>
+                </div>
+
+                <div className="text-sm text-muted-foreground italic border-l-2 border-[#dffb24] pl-3">
+                  {elitePlan.description}
+                </div>
+
+                <ul className="space-y-3">
+                  {elitePlan.features.map((feature, index) => <li key={index} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-[#dffb24]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <feature.icon size={12} className="text-foreground" />
+                      </div>
+                      <div>
+                        <span className="text-sm">{feature.text}</span>
+                        {feature.sub && <p className="text-xs text-muted-foreground mt-0.5">{feature.sub}</p>}
+                      </div>
+                    </li>)}
+                </ul>
+
+                <button className="w-full inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 bg-[#dffb24] text-foreground hover:shadow-lg hover:shadow-[#dffb24]/30 hover:-translate-y-0.5">
+                  Выбрать ELITE
+                </button>
+
+                <p className="text-xs text-center text-muted-foreground">
+                  {elitePlan.footer}
                 </p>
               </GlassCard>
             </div>
