@@ -23,11 +23,21 @@ const formSchema = z.object({
   email: z.string().email("Введите корректный email"),
 });
 
-const paymentLinks: Record<string, string> = {
-  "Light": "https://pay.example.com/light",
-  "Basic": "https://pay.example.com/basic",
-  "PRO / Mentor": "https://pay.example.com/pro",
-  "ELITE / Studio": "https://pay.example.com/elite",
+// Kaspi Gold card number for payments
+const KASPI_CARD_NUMBER = "4400430220735556";
+
+// Prices in tenge for each plan (without currency symbol)
+const planPrices: Record<string, number> = {
+  "Light": 0,
+  "Basic": 70000,
+  "PRO / Mentor": 120000,
+  "ELITE / Studio": 200000,
+};
+
+// Generate Kaspi payment deep link
+const getKaspiPaymentLink = (planName: string, amount: number) => {
+  // Kaspi Gold transfer deep link format
+  return `https://kaspi.kz/pay/P2PTransfer?pan=${KASPI_CARD_NUMBER}&amt=${amount}`;
 };
 
 export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: PricingEnrollModalProps) => {
@@ -69,12 +79,15 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
 
       toast({
         title: "Заявка отправлена!",
-        description: "Переходим к оплате...",
+        description: "Переходим к оплате через Kaspi...",
       });
 
-      // Open payment link
-      const paymentLink = paymentLinks[planName] || "#";
-      window.open(paymentLink, "_blank");
+      // Open Kaspi payment link
+      const amount = planPrices[planName] || 0;
+      if (amount > 0) {
+        const paymentLink = getKaspiPaymentLink(planName, amount);
+        window.open(paymentLink, "_blank");
+      }
       
       onOpenChange(false);
       setPhone("");
@@ -181,7 +194,7 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
           </form>
 
           <p className="text-xs text-muted-foreground text-center">
-            После заполнения вы будете перенаправлены на страницу оплаты
+            После заполнения откроется Kaspi для перевода на карту
           </p>
         </div>
       </DialogContent>
