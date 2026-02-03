@@ -2,8 +2,24 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { Check, Star, Users, Video, FileText, MessageCircle, Zap, Briefcase, Sparkles, Crown } from "lucide-react";
 
-const basePlan = {
-  name: "Базовый",
+const lightPlan = {
+  name: "Light",
+  price: "40 000",
+  currency: "₸",
+  features: [{
+    icon: Video,
+    text: "Доступ ко всем 8 модулям"
+  }, {
+    icon: Zap,
+    text: "5–6 часов видео"
+  }, {
+    icon: FileText,
+    text: "Презентации и инструкции"
+  }]
+};
+
+const basicPlan = {
+  name: "Basic",
   price: "70 000",
   currency: "₸",
   features: [{
@@ -34,7 +50,7 @@ const proPlan = {
   highlight: "Максимум результата",
   features: [{
     icon: Check,
-    text: "Всё из базового тарифа"
+    text: "Всё из тарифа Basic"
   }, {
     icon: Star,
     text: "Личное участие автора курса"
@@ -96,26 +112,52 @@ export const PricingSection = () => {
               Выберите свой тариф
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Два формата обучения для разных целей и темпов
+              Четыре формата обучения для разных целей и темпов
             </p>
           </div>
         </ScrollReveal>
 
         {/* Pricing cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Base Plan */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {/* Light Plan */}
           <ScrollReveal delay={100}>
-            <GlassCard className="p-6 md:p-8 space-y-6 h-full">
+            <GlassCard className="p-6 md:p-8 space-y-6 h-full" hover={false}>
               <div>
-                <h3 className="text-2xl font-bold">{basePlan.name}</h3>
+                <h3 className="text-2xl font-bold">{lightPlan.name}</h3>
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl md:text-4xl font-bold">{basePlan.price}</span>
-                  <span className="text-lg text-muted-foreground">{basePlan.currency}</span>
+                  <span className="text-3xl md:text-4xl font-bold">{lightPlan.price}</span>
+                  <span className="text-lg text-muted-foreground">{lightPlan.currency}</span>
                 </div>
               </div>
 
               <ul className="space-y-3">
-                {basePlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
+                {lightPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-muted/30 flex items-center justify-center flex-shrink-0">
+                      <feature.icon size={12} />
+                    </div>
+                    <span className="text-sm">{feature.text}</span>
+                  </li>)}
+              </ul>
+
+              <button className="btn-secondary w-full">
+                Выбрать Light
+              </button>
+            </GlassCard>
+          </ScrollReveal>
+
+          {/* Basic Plan */}
+          <ScrollReveal delay={150}>
+            <GlassCard className="p-6 md:p-8 space-y-6 h-full">
+              <div>
+                <h3 className="text-2xl font-bold">{basicPlan.name}</h3>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="text-3xl md:text-4xl font-bold">{basicPlan.price}</span>
+                  <span className="text-lg text-muted-foreground">{basicPlan.currency}</span>
+                </div>
+              </div>
+
+              <ul className="space-y-3">
+                {basicPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                       <feature.icon size={12} />
                     </div>
@@ -124,7 +166,7 @@ export const PricingSection = () => {
               </ul>
 
               <button className="btn-secondary w-full">
-                Выбрать базовый
+                Выбрать Basic
               </button>
             </GlassCard>
           </ScrollReveal>
@@ -171,9 +213,9 @@ export const PricingSection = () => {
 
           {/* Elite Plan */}
           <ScrollReveal delay={300}>
-            <div className="relative h-full">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#dffb24]/60 to-[#dffb24]/30 rounded-3xl blur-lg opacity-60" />
-              <GlassCard className="relative p-6 md:p-8 space-y-6 border-[#dffb24]/50 h-full">
+            <div className="relative h-full group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#dffb24]/40 to-[#dffb24]/20 rounded-3xl blur-lg opacity-40 transition-opacity duration-300 group-hover:opacity-80" />
+              <GlassCard className="relative p-6 md:p-8 space-y-6 border-[#dffb24]/50 h-full transition-all duration-300 group-hover:shadow-[0_0_40px_rgba(223,251,36,0.4)]">
                 <div className="absolute -top-3 right-6">
                   <span className="rounded-full bg-[#dffb24] text-foreground font-semibold text-sm px-3 py-1">
                     Premium
