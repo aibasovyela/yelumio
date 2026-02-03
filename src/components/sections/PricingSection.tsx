@@ -118,64 +118,68 @@ export const PricingSection = () => {
         </ScrollReveal>
 
         {/* Pricing cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-start">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-start pt-6">
           {/* Light Plan */}
           <ScrollReveal delay={100}>
-            <GlassCard className="p-6 md:p-8 space-y-6" hover={false}>
-              <div>
-                <h3 className="text-2xl font-bold">{lightPlan.name}</h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl md:text-4xl font-bold">{lightPlan.price}</span>
-                  <span className="text-lg text-muted-foreground">{lightPlan.currency}</span>
+            <div className="relative">
+              <GlassCard className="p-6 md:p-8 space-y-6" hover={false}>
+                <div>
+                  <h3 className="text-2xl font-bold">{lightPlan.name}</h3>
+                  <div className="mt-4 flex items-baseline gap-1">
+                    <span className="text-3xl md:text-4xl font-bold">{lightPlan.price}</span>
+                    <span className="text-lg text-muted-foreground">{lightPlan.currency}</span>
+                  </div>
                 </div>
-              </div>
 
-              <ul className="space-y-3">
-                {lightPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-muted/30 flex items-center justify-center flex-shrink-0">
-                      <feature.icon size={12} />
-                    </div>
-                    <span className="text-sm">{feature.text}</span>
-                  </li>)}
-              </ul>
+                <ul className="space-y-3">
+                  {lightPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-muted/30 flex items-center justify-center flex-shrink-0">
+                        <feature.icon size={12} />
+                      </div>
+                      <span className="text-sm">{feature.text}</span>
+                    </li>)}
+                </ul>
 
-              <button className="btn-secondary w-full">
-                Выбрать Light
-              </button>
-            </GlassCard>
+                <button className="btn-secondary w-full">
+                  Выбрать Light
+                </button>
+              </GlassCard>
+            </div>
           </ScrollReveal>
 
           {/* Basic Plan */}
           <ScrollReveal delay={150}>
-            <GlassCard className="p-6 md:p-8 space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold">{basicPlan.name}</h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl md:text-4xl font-bold">{basicPlan.price}</span>
-                  <span className="text-lg text-muted-foreground">{basicPlan.currency}</span>
+            <div className="relative">
+              <GlassCard className="p-6 md:p-8 space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold">{basicPlan.name}</h3>
+                  <div className="mt-4 flex items-baseline gap-1">
+                    <span className="text-3xl md:text-4xl font-bold">{basicPlan.price}</span>
+                    <span className="text-lg text-muted-foreground">{basicPlan.currency}</span>
+                  </div>
                 </div>
-              </div>
 
-              <ul className="space-y-3">
-                {basicPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <feature.icon size={12} />
-                    </div>
-                    <span className="text-sm">{feature.text}</span>
-                  </li>)}
-              </ul>
+                <ul className="space-y-3">
+                  {basicPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <feature.icon size={12} />
+                      </div>
+                      <span className="text-sm">{feature.text}</span>
+                    </li>)}
+                </ul>
 
-              <button className="btn-secondary w-full">
-                Выбрать Basic
-              </button>
-            </GlassCard>
+                <button className="btn-secondary w-full">
+                  Выбрать Basic
+                </button>
+              </GlassCard>
+            </div>
           </ScrollReveal>
 
           {/* Pro Plan */}
           <ScrollReveal delay={200}>
-            <div className="relative group pt-4">
-              <div className="absolute -inset-1 top-3 bg-gradient-to-r from-primary/50 to-primary/30 rounded-3xl blur-lg opacity-50" />
-              <div className="absolute -top-0 right-6 z-10">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-primary/30 rounded-3xl blur-lg opacity-50" />
+              <div className="absolute -top-4 right-6 z-10">
                 <span className="rounded-full bg-primary text-primary-foreground font-semibold text-sm px-3 py-1">
                   Рекомендуем
                 </span>
@@ -212,9 +216,9 @@ export const PricingSection = () => {
 
           {/* Elite Plan */}
           <ScrollReveal delay={300}>
-            <div className="relative group pt-4">
-              <div className="absolute -inset-1 top-3 bg-gradient-to-r from-[#dffb24]/40 to-[#dffb24]/20 rounded-3xl blur-lg opacity-40 transition-opacity duration-300 group-hover:opacity-80" />
-              <div className="absolute -top-0 right-6 z-10">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#dffb24]/40 to-[#dffb24]/20 rounded-3xl blur-lg opacity-40 transition-opacity duration-300 group-hover:opacity-80" />
+              <div className="absolute -top-4 right-6 z-10">
                 <span className="rounded-full bg-[#dffb24] text-foreground font-semibold text-sm px-3 py-1">
                   Premium
                 </span>
