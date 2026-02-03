@@ -32,7 +32,7 @@ const results = [
 
 export const ResultsSection = () => {
   return (
-    <section className="section-padding">
+    <section className="section-padding bg-secondary/30">
       <div className="container">
         {/* Header */}
         <ScrollReveal>

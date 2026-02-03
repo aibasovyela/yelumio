@@ -32,7 +32,7 @@ const steps = [
 
 export const HowItWorksSection = () => {
   return (
-    <section className="section-padding bg-secondary/30">
+    <section className="section-padding">
       <div className="container">
         {/* Header */}
         <ScrollReveal>
