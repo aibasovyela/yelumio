@@ -95,8 +95,8 @@ export default {
   		},
   		boxShadow: {
   			soft: '0 4px 30px hsl(220 20% 10% / 0.06)',
-  			glow: '0 0 40px hsl(68 100% 50% / 0.3)',
-  			'glow-lg': '0 0 60px hsl(68 100% 50% / 0.4)',
+				glow: 'var(--shadow-glow)',
+				'glow-lg': 'var(--shadow-glow-lg)',
   			card: '0 8px 40px hsl(220 20% 10% / 0.08)',
   			'2xs': 'var(--shadow-2xs)',
   			xs: 'var(--shadow-xs)',
