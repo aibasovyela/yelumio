@@ -1,40 +1,60 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { Check, Star, Users, Video, FileText, MessageCircle, Zap } from "lucide-react";
-
 const basePlan = {
   name: "Базовый",
   price: "70 000",
   currency: "₸",
-  features: [
-    { icon: Video, text: "Доступ ко всем 8 модулям" },
-    { icon: Zap, text: "5–6 часов видео" },
-    { icon: FileText, text: "Презентации и инструкции" },
-    { icon: Check, text: "Домашние задания" },
-    { icon: Check, text: "Проверка ДЗ" },
-    { icon: MessageCircle, text: "Обратная связь по работам" },
-  ],
+  features: [{
+    icon: Video,
+    text: "Доступ ко всем 8 модулям"
+  }, {
+    icon: Zap,
+    text: "5–6 часов видео"
+  }, {
+    icon: FileText,
+    text: "Презентации и инструкции"
+  }, {
+    icon: Check,
+    text: "Домашние задания"
+  }, {
+    icon: Check,
+    text: "Проверка ДЗ"
+  }, {
+    icon: MessageCircle,
+    text: "Обратная связь по работам"
+  }]
 };
-
 const proPlan = {
   name: "PRO / Mentor",
   price: "120 000",
   currency: "₸",
   highlight: "Максимум результата",
-  features: [
-    { icon: Check, text: "Всё из базового тарифа" },
-    { icon: Star, text: "Личное участие автора курса" },
-    { icon: Users, text: "2 живых созвона в неделю" },
-    { icon: Zap, text: "Разбор каждого креатива" },
-    { icon: Check, text: "Детальная работа с кадрами, светом, движением" },
-    { icon: MessageCircle, text: "Ответы на вопросы вживую" },
-    { icon: Star, text: "Ускоренный рост и глубина" },
-  ],
+  features: [{
+    icon: Check,
+    text: "Всё из базового тарифа"
+  }, {
+    icon: Star,
+    text: "Личное участие автора курса"
+  }, {
+    icon: Users,
+    text: "2 живых созвона в неделю"
+  }, {
+    icon: Zap,
+    text: "Разбор каждого креатива"
+  }, {
+    icon: Check,
+    text: "Детальная работа с кадрами, светом, движением"
+  }, {
+    icon: MessageCircle,
+    text: "Ответы на вопросы вживую"
+  }, {
+    icon: Star,
+    text: "Ускоренный рост и глубина"
+  }]
 };
-
 export const PricingSection = () => {
-  return (
-    <section className="section-padding">
+  return <section className="section-padding">
       <div className="container">
         {/* Header */}
         <ScrollReveal>
@@ -62,14 +82,12 @@ export const PricingSection = () => {
               </div>
 
               <ul className="space-y-3">
-                {basePlan.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3">
+                {basePlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                       <feature.icon size={12} />
                     </div>
                     <span className="text-sm">{feature.text}</span>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
 
               <button className="btn-secondary w-full">
@@ -84,7 +102,7 @@ export const PricingSection = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-primary/30 rounded-3xl blur-lg opacity-50" />
               <GlassCard className="relative p-8 space-y-6 border-primary/30 h-full">
                 <div className="absolute -top-3 right-6">
-                  <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-semibold">
+                  <span className="rounded-full bg-primary text-primary-foreground font-semibold text-base py-[5px] px-px">
                     Рекомендуем
                   </span>
                 </div>
@@ -99,14 +117,12 @@ export const PricingSection = () => {
                 </div>
 
                 <ul className="space-y-3">
-                  {proPlan.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3">
+                  {proPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-primary/30 flex items-center justify-center flex-shrink-0">
                         <feature.icon size={12} />
                       </div>
                       <span className="text-sm">{feature.text}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
 
                 <button className="btn-primary w-full">
@@ -121,6 +137,5 @@ export const PricingSection = () => {
           </ScrollReveal>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
