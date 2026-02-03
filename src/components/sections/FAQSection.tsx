@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { EnrollModal } from "@/components/EnrollModal";
+import { QuestionModal } from "@/components/QuestionModal";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
@@ -38,6 +39,7 @@ const faqs = [
 
 export const FAQSection = () => {
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
+  const [isQuestionOpen, setIsQuestionOpen] = useState(false);
 
   return (
     <>
@@ -63,7 +65,10 @@ export const FAQSection = () => {
                     Записаться на поток
                     <ArrowRight size={18} />
                   </button>
-                  <button className="btn-secondary gap-2">
+                  <button 
+                    className="btn-secondary gap-2"
+                    onClick={() => setIsQuestionOpen(true)}
+                  >
                     <MessageCircle size={18} />
                     Задать вопрос
                   </button>
@@ -95,6 +100,7 @@ export const FAQSection = () => {
       </section>
 
       <EnrollModal open={isEnrollOpen} onOpenChange={setIsEnrollOpen} />
+      <QuestionModal open={isQuestionOpen} onOpenChange={setIsQuestionOpen} />
     </>
   );
 };

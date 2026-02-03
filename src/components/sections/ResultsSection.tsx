@@ -5,13 +5,13 @@ import { Image, Brain, Workflow, Briefcase, Shield } from "lucide-react";
 const results = [
   {
     icon: Image,
-    value: "5–10",
+    value: "5",
     label: "готовых креативов",
   },
   {
     icon: Brain,
-    value: "4",
-    label: "сферы ИИ освоены",
+    value: "5",
+    label: "сфер ИИ освоены",
   },
   {
     icon: Workflow,

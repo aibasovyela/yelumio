@@ -5,7 +5,7 @@ import { Monitor, Smartphone, MessageCircle, Zap } from "lucide-react";
 const platforms = [
   {
     icon: Monitor,
-    name: "Higgsfield (HeadFlow)",
+    name: "Higgsfield",
     highlight: "Основной инструмент курса",
     features: [
       "Работа с фото и видео",
@@ -25,7 +25,7 @@ const platforms = [
   },
   {
     icon: MessageCircle,
-    name: "VeoCIBot",
+    name: "Veo C",
     highlight: "Идеален для новичков",
     features: [
       "Telegram-бот",
@@ -81,7 +81,7 @@ export const PlatformsSection = () => {
 
         {/* Note */}
         <p className="text-center text-muted-foreground">
-          Не нужно покупать всё. Достаточно 1–2 инструментов под ваши задачи.
+          Достаточно одной платформы под вашу задачу.
         </p>
       </div>
     </section>

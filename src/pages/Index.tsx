@@ -30,13 +30,13 @@ const Index = () => {
           <CourseProgramSection />
         </div>
         
-        <div id="pricing">
-          <PricingSection />
-        </div>
-        
         <HowItWorksSection />
         
         <ResultsSection />
+        
+        <div id="pricing">
+          <PricingSection />
+        </div>
         
         <div id="faq">
           <FAQSection />
