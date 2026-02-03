@@ -18,6 +18,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { ScrollReveal } from "@/hooks/useScrollAnimation";
 
 const modules = [
   {
@@ -132,17 +133,20 @@ export const CourseProgramSection = () => {
     <section className="section-padding bg-secondary/30">
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Программа курса
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            7 практических модулей: от идеи до готового кейса в портфолио
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              Программа курса
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              7 практических модулей: от идеи до готового кейса в портфолио
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Accordion */}
-        <div className="max-w-4xl mx-auto">
+        <ScrollReveal>
+          <div className="max-w-4xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {modules.map((module, index) => {
               const IconComponent = module.icon;
@@ -220,37 +224,40 @@ export const CourseProgramSection = () => {
               );
             })}
           </Accordion>
-        </div>
+          </div>
+        </ScrollReveal>
 
         {/* Homework Review Block */}
-        <div className="max-w-4xl mx-auto mt-16">
-          <GlassCard className="p-8 md:p-10 bg-primary/5 border-primary/20">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Проверка домашних заданий — главный ускоритель
-              </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Вы получаете не общие слова, а конкретные правки: что исправить, почему, и как сделать лучше.
-              </p>
-            </div>
+        <ScrollReveal delay={300}>
+          <div className="max-w-4xl mx-auto mt-16">
+            <GlassCard className="p-8 md:p-10 bg-primary/5 border-primary/20">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                  Проверка домашних заданий — главный ускоритель
+                </h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Вы получаете не общие слова, а конкретные правки: что исправить, почему, и как сделать лучше.
+                </p>
+              </div>
 
-            {/* Review Scale */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {reviewScale.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="text-center p-4 rounded-xl bg-background/50 border border-border/50"
-                >
-                  <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center">
-                    <span className="text-lg font-bold">{index + 1}</span>
+              {/* Review Scale */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {reviewScale.map((item, index) => (
+                  <div 
+                    key={index} 
+                    className="text-center p-4 rounded-xl bg-background/50 border border-border/50"
+                  >
+                    <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center">
+                      <span className="text-lg font-bold">{index + 1}</span>
+                    </div>
+                    <p className="font-semibold mb-1">{item.title}</p>
+                    <p className="text-xs text-muted-foreground">{item.description}</p>
                   </div>
-                  <p className="font-semibold mb-1">{item.title}</p>
-                  <p className="text-xs text-muted-foreground">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </GlassCard>
-        </div>
+                ))}
+              </div>
+            </GlassCard>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

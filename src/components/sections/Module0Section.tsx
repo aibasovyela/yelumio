@@ -1,5 +1,6 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { IconBox } from "@/components/ui/IconBox";
+import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { Lightbulb, FileText, Camera, Video, Music, AlertCircle } from "lucide-react";
 
 const modules = [
@@ -67,36 +68,40 @@ export const Module0Section = () => {
 
       <div className="container relative z-10">
         {/* Section header */}
-        <div className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-4">
-            <span className="text-sm font-semibold">С ЧЕГО ВСЁ НАЧИНАЕТСЯ</span>
+        <ScrollReveal>
+          <div className="text-center mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-4">
+              <span className="text-sm font-semibold">С ЧЕГО ВСЁ НАЧИНАЕТСЯ</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              Модуль 0. Фундамент ИИ-креатива
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Этот модуль — основа всего курса. Он объясняет, как правильно работать с ИИ, 
+              чтобы получать результат, а не просто красивые, но бесполезные картинки.
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Модуль 0. Фундамент ИИ-креатива
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Этот модуль — основа всего курса. Он объясняет, как правильно работать с ИИ, 
-            чтобы получать результат, а не просто красивые, но бесполезные картинки.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Module cards grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {modules.map((module, index) => (
-            <GlassCard key={index} className="space-y-4">
-              <div className="flex items-center gap-4">
-                <IconBox icon={module.icon} />
-                <h3 className="text-xl font-bold">{module.title}</h3>
-              </div>
-              <ul className="space-y-2">
-                {module.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </GlassCard>
+            <ScrollReveal key={index} delay={index * 100}>
+              <GlassCard className="space-y-4 h-full">
+                <div className="flex items-center gap-4">
+                  <IconBox icon={module.icon} />
+                  <h3 className="text-xl font-bold">{module.title}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {module.points.map((point, i) => (
+                    <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </GlassCard>
+            </ScrollReveal>
           ))}
 
           {/* Mistakes card - spans full width on lg */}
