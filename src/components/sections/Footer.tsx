@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 export const Footer = () => {
   return (
@@ -6,9 +6,11 @@ export const Footer = () => {
       <div className="container">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
-              <Sparkles size={20} strokeWidth={1.5} />
-            </div>
+            <img 
+              src={logo} 
+              alt="Логотип" 
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <span className="font-bold text-lg">ИИ-КРЕАТИВ</span>
           </div>
           

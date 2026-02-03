@@ -1,6 +1,7 @@
-import { Sparkles, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { EnrollModal } from "@/components/EnrollModal";
+import logo from "@/assets/logo.png";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,9 +16,11 @@ export const Header = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-                <Sparkles size={20} strokeWidth={1.5} />
-              </div>
+              <img 
+                src={logo} 
+                alt="Логотип" 
+                className="w-10 h-10 rounded-full object-cover group-hover:scale-105 transition-transform"
+              />
               <span className="font-bold text-lg hidden sm:block">Курс по ИИ от Yelumio</span>
             </a>
 
