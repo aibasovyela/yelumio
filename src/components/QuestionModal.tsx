@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface QuestionModalProps {
   open: boolean;
@@ -36,20 +37,38 @@ export const QuestionModal = ({ open, onOpenChange }: QuestionModalProps) => {
     }
 
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Вопрос отправлен!",
-      description: "Мы свяжемся с вами в ближайшее время",
-    });
-    
-    setEmail("");
-    setPhone("");
-    setQuestion("");
-    setIsSubmitting(false);
-    onOpenChange(false);
+
+    try {
+      const { error } = await supabase.functions.invoke("send-to-telegram", {
+        body: {
+          type: "question",
+          email,
+          phone,
+          question,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Вопрос отправлен!",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+
+      setEmail("");
+      setPhone("");
+      setQuestion("");
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Error sending to Telegram:", error);
+      toast({
+        title: "Ошибка отправки",
+        description: "Попробуйте ещё раз или свяжитесь с нами напрямую",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

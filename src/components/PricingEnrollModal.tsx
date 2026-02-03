@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,8 +7,9 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ArrowRight, CreditCard } from "lucide-react";
-import { useState } from "react";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 interface PricingEnrollModalProps {
   open: boolean;
@@ -32,8 +34,10 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<{ phone?: string; email?: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const result = formSchema.safeParse({ phone, email });
@@ -49,14 +53,42 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
     }
     
     setErrors({});
-    
-    // Open payment link
-    const paymentLink = paymentLinks[planName] || "#";
-    window.open(paymentLink, "_blank");
-    
-    onOpenChange(false);
-    setPhone("");
-    setEmail("");
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke("send-to-telegram", {
+        body: {
+          type: "pricing",
+          plan: planName,
+          email,
+          phone,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Заявка отправлена!",
+        description: "Переходим к оплате...",
+      });
+
+      // Open payment link
+      const paymentLink = paymentLinks[planName] || "#";
+      window.open(paymentLink, "_blank");
+      
+      onOpenChange(false);
+      setPhone("");
+      setEmail("");
+    } catch (error) {
+      console.error("Error sending to Telegram:", error);
+      toast({
+        title: "Ошибка отправки",
+        description: "Попробуйте ещё раз",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getPlanColor = () => {
@@ -134,10 +166,17 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
             <button
               type="submit"
               className={getButtonStyle()}
+              disabled={isSubmitting}
             >
-              <CreditCard size={18} />
-              Перейти к оплате
-              <ArrowRight size={18} />
+              {isSubmitting ? (
+                "Отправка..."
+              ) : (
+                <>
+                  <CreditCard size={18} />
+                  Перейти к оплате
+                  <ArrowRight size={18} />
+                </>
+              )}
             </button>
           </form>
 
