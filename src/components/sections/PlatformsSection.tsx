@@ -62,13 +62,13 @@ export const PlatformsSection = () => {
                     <platform.icon size={24} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg">{platform.name}</h3>
+                    <h3 className="font-bold text-lg text-foreground">{platform.name}</h3>
                     <span className="text-xs text-primary font-medium">{platform.highlight}</span>
                   </div>
                 </div>
                 <ul className="space-y-2">
                   {platform.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-secondary-foreground/80 text-sm">
+                    <li key={i} className="flex items-center gap-2 text-foreground/80 text-sm">
                       <Zap size={14} className="text-primary flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
