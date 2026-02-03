@@ -1,12 +1,49 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { Module0Section } from "@/components/sections/Module0Section";
+import { PlatformsSection } from "@/components/sections/PlatformsSection";
+import { HiggsfieldSection } from "@/components/sections/HiggsfieldSection";
+import { CourseProgramSection } from "@/components/sections/CourseProgramSection";
+import { PricingSection } from "@/components/sections/PricingSection";
+import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
+import { ResultsSection } from "@/components/sections/ResultsSection";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { Footer } from "@/components/sections/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main>
+        <HeroSection />
+        
+        <div id="module0">
+          <Module0Section />
+        </div>
+        
+        <PlatformsSection />
+        
+        <HiggsfieldSection />
+        
+        <div id="program">
+          <CourseProgramSection />
+        </div>
+        
+        <div id="pricing">
+          <PricingSection />
+        </div>
+        
+        <HowItWorksSection />
+        
+        <ResultsSection />
+        
+        <div id="faq">
+          <FAQSection />
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };
