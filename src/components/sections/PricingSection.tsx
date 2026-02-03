@@ -118,10 +118,10 @@ export const PricingSection = () => {
         </ScrollReveal>
 
         {/* Pricing cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-start">
           {/* Light Plan */}
           <ScrollReveal delay={100}>
-            <GlassCard className="p-6 md:p-8 space-y-6 h-full" hover={false}>
+            <GlassCard className="p-6 md:p-8 space-y-6" hover={false}>
               <div>
                 <h3 className="text-2xl font-bold">{lightPlan.name}</h3>
                 <div className="mt-4 flex items-baseline gap-1">
@@ -147,7 +147,7 @@ export const PricingSection = () => {
 
           {/* Basic Plan */}
           <ScrollReveal delay={150}>
-            <GlassCard className="p-6 md:p-8 space-y-6 h-full">
+            <GlassCard className="p-6 md:p-8 space-y-6">
               <div>
                 <h3 className="text-2xl font-bold">{basicPlan.name}</h3>
                 <div className="mt-4 flex items-baseline gap-1">
@@ -173,9 +173,9 @@ export const PricingSection = () => {
 
           {/* Pro Plan */}
           <ScrollReveal delay={200}>
-            <div className="relative h-full">
+            <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-primary/30 rounded-3xl blur-lg opacity-50" />
-              <GlassCard className="relative p-6 md:p-8 space-y-6 border-primary/30 h-full">
+              <GlassCard className="relative p-6 md:p-8 space-y-6 border-primary/30">
                 <div className="absolute -top-3 right-6">
                   <span className="rounded-full bg-primary text-primary-foreground font-semibold text-sm px-3 py-1">
                     Рекомендуем
@@ -213,9 +213,9 @@ export const PricingSection = () => {
 
           {/* Elite Plan */}
           <ScrollReveal delay={300}>
-            <div className="relative h-full group">
+            <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#dffb24]/40 to-[#dffb24]/20 rounded-3xl blur-lg opacity-40 transition-opacity duration-300 group-hover:opacity-80" />
-              <GlassCard className="relative p-6 md:p-8 space-y-6 border-[#dffb24]/50 h-full transition-all duration-300 group-hover:shadow-[0_0_40px_rgba(223,251,36,0.4)]">
+              <GlassCard className="relative p-6 md:p-8 space-y-6 border-[#dffb24]/50 transition-all duration-300 group-hover:shadow-[0_0_40px_rgba(223,251,36,0.4)]">
                 <div className="absolute -top-3 right-6">
                   <span className="rounded-full bg-[#dffb24] text-foreground font-semibold text-sm px-3 py-1">
                     Premium
