@@ -1,6 +1,7 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { Check, ArrowRight, Lightbulb, Camera, Video, Film } from "lucide-react";
+import higgsfieldInterface from "@/assets/higgsfield-interface.png";
 
 const benefits = [
   "Стабильный результат",
@@ -66,17 +67,14 @@ export const HiggsfieldSection = () => {
                 </div>
               </GlassCard>
 
-              {/* Interface preview placeholder */}
-              <GlassCard className="p-4">
-                <div className="bg-foreground/5 rounded-xl aspect-video flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                    <div className="grid grid-cols-3 gap-2 max-w-[200px] mx-auto">
-                      {[1, 2, 3, 4, 5, 6].map((i) => (
-                        <div key={i} className="aspect-square rounded-lg bg-primary/10 border border-primary/20" />
-                      ))}
-                    </div>
-                    <p className="text-xs text-secondary-foreground/60 mt-4">Интерфейс платформы</p>
-                  </div>
+              {/* Interface preview */}
+              <GlassCard className="p-4 overflow-hidden">
+                <div className="rounded-xl overflow-hidden">
+                  <img 
+                    src={higgsfieldInterface} 
+                    alt="Интерфейс платформы Higgsfield" 
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
               </GlassCard>
             </div>

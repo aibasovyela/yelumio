@@ -154,7 +154,7 @@ export const CourseProgramSection = () => {
                 <AccordionItem
                   key={index}
                   value={`module-${index}`}
-                  className="glass-card-static bg-secondary border-none px-6 data-[state=open]:shadow-glow"
+                  className="glass-card-static bg-card text-card-foreground border-none px-6 data-[state=open]:shadow-glow"
                 >
                   <>
                     <AccordionTrigger className="hover:no-underline py-6">
