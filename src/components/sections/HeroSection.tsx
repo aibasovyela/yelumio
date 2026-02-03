@@ -109,9 +109,9 @@ export const HeroSection = () => {
             {/* Main photo container */}
             <div className="relative">
               {/* Photo with stylish frame */}
-              <div className="relative glass-card p-3 rounded-2xl animate-float-tilted group cursor-pointer">
-                <div className="relative overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-105">
-                  <img 
+              <div className="relative glass-card p-3 rounded-2xl animate-float-tilted cursor-pointer transition-transform duration-300 hover:scale-105">
+                <div className="relative overflow-hidden rounded-xl">
+                  <img
                     src={authorPhoto} 
                     alt="Автор курса" 
                     className="w-full max-w-[280px] md:max-w-xs h-auto object-cover rounded-xl"
