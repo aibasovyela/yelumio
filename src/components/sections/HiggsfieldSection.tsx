@@ -1,6 +1,6 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
-import { Check, ArrowRight, Lightbulb, Camera, Video, Film } from "lucide-react";
+import { Check, ArrowRight, Lightbulb, FileText, Camera, Video, Film } from "lucide-react";
 import higgsfieldInterface from "@/assets/higgsfield-interface.png";
 
 const benefits = [
@@ -14,6 +14,7 @@ const benefits = [
 
 const pipelineSteps = [
   { icon: Lightbulb, label: "Идея" },
+  { icon: FileText, label: "Текст" },
   { icon: Camera, label: "Фото" },
   { icon: Video, label: "Видео" },
   { icon: Film, label: "Монтаж" },
@@ -35,7 +36,7 @@ export const HiggsfieldSection = () => {
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 rounded-full bg-[#dffb24]/20 flex items-center justify-center flex-shrink-0 border border-[#dffb24]/30">
                       <Check size={14} className="text-foreground" />
                     </div>
                     <span className="text-lg">{benefit}</span>
@@ -51,17 +52,17 @@ export const HiggsfieldSection = () => {
               <GlassCard className="p-8">
                 <h3 className="text-lg font-semibold mb-6 text-center">Пайплайн создания креатива</h3>
                 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center gap-2 md:gap-4">
                   {pipelineSteps.map((step, index) => (
                     <div key={index} className="flex items-center">
                       <div className="flex flex-col items-center gap-2">
-                        <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center border border-primary/20">
-                          <step.icon size={24} strokeWidth={1.5} />
+                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#dffb24]/15 flex items-center justify-center border border-[#dffb24]/30">
+                          <step.icon size={22} strokeWidth={1.5} className="text-foreground" />
                         </div>
-                        <span className="text-sm font-medium">{step.label}</span>
+                        <span className="text-xs md:text-sm font-medium">{step.label}</span>
                       </div>
                       {index < pipelineSteps.length - 1 && (
-                        <ArrowRight size={20} className="mx-2 text-secondary-foreground/60" />
+                        <ArrowRight size={18} className="mx-1 md:mx-2 text-foreground flex-shrink-0" />
                       )}
                     </div>
                   ))}

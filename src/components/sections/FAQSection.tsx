@@ -43,7 +43,7 @@ export const FAQSection = () => {
 
   return (
     <>
-      <section id="faq" className="section-padding bg-secondary/30">
+      <section id="faq" className="section-padding bg-primary/5">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left - CTA */}

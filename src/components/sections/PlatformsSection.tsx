@@ -37,7 +37,7 @@ const platforms = [
 
 export const PlatformsSection = () => {
   return (
-    <section className="section-padding bg-secondary/30">
+    <section className="section-padding bg-primary/5">
       <div className="container">
         {/* Header */}
         <ScrollReveal>
