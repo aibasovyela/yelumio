@@ -49,7 +49,7 @@ export const HiggsfieldSection = () => {
           {/* Right visual - Pipeline */}
           <ScrollReveal direction="right" delay={200}>
             <div className="space-y-6">
-              <div className="p-8 rounded-xl bg-[#dffb24]/10 border-2 border-[#dffb24]">
+              <div className="p-8 rounded-xl bg-[#dffb24]/10 border-2 border-[#dffb24] transition-all duration-300 hover:shadow-[0_0_40px_rgba(223,251,36,0.4)]">
                 <h3 className="text-lg font-semibold mb-6 text-center">Пайплайн создания креатива</h3>
                 
                 <div className="flex items-center justify-center gap-2 md:gap-4">
@@ -70,7 +70,7 @@ export const HiggsfieldSection = () => {
               </div>
 
               {/* Interface preview */}
-              <div className="p-4 rounded-xl bg-[#dffb24]/10 border-2 border-[#dffb24] overflow-hidden">
+              <div className="p-4 rounded-xl bg-[#dffb24]/10 border-2 border-[#dffb24] overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(223,251,36,0.4)]">
                 <div className="rounded-xl overflow-hidden">
                   <img 
                     src={higgsfieldInterface} 
