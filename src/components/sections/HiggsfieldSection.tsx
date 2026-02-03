@@ -49,15 +49,15 @@ export const HiggsfieldSection = () => {
           {/* Right visual - Pipeline */}
           <ScrollReveal direction="right" delay={200}>
             <div className="space-y-6">
-              <GlassCard className="p-8">
+              <div className="p-8 rounded-xl bg-[#dffb24]/10 border-2 border-[#dffb24]">
                 <h3 className="text-lg font-semibold mb-6 text-center">Пайплайн создания креатива</h3>
                 
                 <div className="flex items-center justify-center gap-2 md:gap-4">
                   {pipelineSteps.map((step, index) => (
                     <div key={index} className="flex items-center">
                       <div className="flex flex-col items-center gap-2">
-                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#dffb24]/15 flex items-center justify-center border border-[#dffb24]/30">
-                          <step.icon size={22} strokeWidth={1.5} className="text-foreground" />
+                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#dffb24] flex items-center justify-center">
+                          <step.icon size={22} strokeWidth={2} className="text-white" />
                         </div>
                         <span className="text-xs md:text-sm font-medium">{step.label}</span>
                       </div>
@@ -67,10 +67,10 @@ export const HiggsfieldSection = () => {
                     </div>
                   ))}
                 </div>
-              </GlassCard>
+              </div>
 
               {/* Interface preview */}
-              <GlassCard className="p-4 overflow-hidden">
+              <div className="p-4 rounded-xl bg-[#dffb24]/10 border-2 border-[#dffb24] overflow-hidden">
                 <div className="rounded-xl overflow-hidden">
                   <img 
                     src={higgsfieldInterface} 
@@ -78,7 +78,7 @@ export const HiggsfieldSection = () => {
                     className="w-full h-auto object-cover"
                   />
                 </div>
-              </GlassCard>
+              </div>
             </div>
           </ScrollReveal>
         </div>
