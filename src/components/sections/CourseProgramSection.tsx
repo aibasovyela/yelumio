@@ -4,7 +4,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BookOpen, Pencil, CheckCircle, ClipboardCheck, Lightbulb, Camera, Video, Music, Mic, Package, Briefcase } from "lucide-react";
+import {
+  BookOpen,
+  Pencil,
+  CheckCircle,
+  ClipboardCheck,
+  Lightbulb,
+  Camera,
+  Video,
+  Music,
+  Mic,
+  Package,
+  Briefcase,
+} from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 
 const modules = [
@@ -138,69 +150,72 @@ export const CourseProgramSection = () => {
                 <AccordionItem
                   key={index}
                   value={`module-${index}`}
-                  className="glass-card border-none px-6 data-[state=open]:shadow-glow"
+                  className="glass-card-static bg-secondary border-none px-6 data-[state=open]:shadow-glow"
                 >
-                  <AccordionTrigger className="hover:no-underline py-6">
-                    <div className="flex items-center gap-4 text-left">
-                      <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
-                        <IconComponent size={22} className="text-foreground" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <span className="text-xs font-medium text-primary uppercase">Модуль {module.number}</span>
-                        <p className="text-lg font-semibold">{module.title}</p>
-                      </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-6">
-                    <div className="space-y-6 pt-2">
-                      {/* What you'll learn */}
-                      <div className="flex items-start gap-3">
-                        <BookOpen size={18} className="text-primary mt-1 flex-shrink-0" />
+                  <>
+                    <AccordionTrigger className="hover:no-underline py-6">
+                      <div className="flex items-center gap-4 text-left">
+                        <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+                          <IconComponent size={22} className="text-foreground" strokeWidth={1.5} />
+                        </div>
                         <div>
-                          <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">Что изучишь</p>
-                          <ul className="space-y-1.5">
-                            {module.learn.map((item, i) => (
-                              <li key={i} className="text-sm flex items-start gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
+                          <span className="text-xs font-medium text-primary uppercase">Модуль {module.number}</span>
+                          <p className="text-lg font-semibold">{module.title}</p>
                         </div>
                       </div>
+                    </AccordionTrigger>
 
-                      <div className="grid md:grid-cols-2 gap-4">
-                        {/* Result */}
+                    <AccordionContent className="pb-6">
+                      <div className="space-y-6 pt-2">
+                        {/* What you'll learn */}
                         <div className="flex items-start gap-3">
-                          <CheckCircle size={18} className="text-primary mt-1 flex-shrink-0" />
+                          <BookOpen size={18} className="text-primary mt-1 flex-shrink-0" />
                           <div>
-                            <p className="text-xs font-semibold uppercase text-muted-foreground mb-1">Результат</p>
-                            <p className="text-sm">{module.result}</p>
+                            <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">Что изучишь</p>
+                            <ul className="space-y-1.5">
+                              {module.learn.map((item, i) => (
+                                <li key={i} className="text-sm flex items-start gap-2">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
 
-                        {/* Homework */}
-                        <div className="flex items-start gap-3">
-                          <Pencil size={18} className="text-primary mt-1 flex-shrink-0" />
-                          <div>
-                            <p className="text-xs font-semibold uppercase text-muted-foreground mb-1">Домашнее задание</p>
-                            <p className="text-sm">{module.homework}</p>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {/* Result */}
+                          <div className="flex items-start gap-3">
+                            <CheckCircle size={18} className="text-primary mt-1 flex-shrink-0" />
+                            <div>
+                              <p className="text-xs font-semibold uppercase text-muted-foreground mb-1">Результат</p>
+                              <p className="text-sm">{module.result}</p>
+                            </div>
                           </div>
-                        </div>
-                      </div>
 
-                      {/* Check */}
-                      <div className="pt-4 border-t border-border/50">
-                        <div className="flex items-start gap-3">
-                          <ClipboardCheck size={18} className="text-primary mt-0.5 flex-shrink-0" />
-                          <div>
-                            <span className="text-xs font-semibold uppercase text-muted-foreground">Что проверим: </span>
-                            <span className="text-sm text-muted-foreground">{module.check}</span>
+                          {/* Homework */}
+                          <div className="flex items-start gap-3">
+                            <Pencil size={18} className="text-primary mt-1 flex-shrink-0" />
+                            <div>
+                              <p className="text-xs font-semibold uppercase text-muted-foreground mb-1">Домашнее задание</p>
+                              <p className="text-sm">{module.homework}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Check */}
+                        <div className="pt-4 border-t border-border/50">
+                          <div className="flex items-start gap-3">
+                            <ClipboardCheck size={18} className="text-primary mt-0.5 flex-shrink-0" />
+                            <div>
+                              <span className="text-xs font-semibold uppercase text-muted-foreground">Что проверим: </span>
+                              <span className="text-sm text-muted-foreground">{module.check}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </AccordionContent>
+                    </AccordionContent>
+                  </>
                 </AccordionItem>
               );
             })}
