@@ -55,7 +55,7 @@ export const HowItWorksSection = () => {
                   <step.icon size={24} strokeWidth={1.5} />
                 </div>
                 <h3 className="font-semibold">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
+                <p className="text-sm text-secondary-foreground/80">{step.description}</p>
               </GlassCard>
             </ScrollReveal>
           ))}

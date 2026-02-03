@@ -94,7 +94,7 @@ export const Module0Section = () => {
                 </div>
                 <ul className="space-y-2">
                   {module.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                    <li key={i} className="flex items-start gap-2 text-secondary-foreground/80">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                       <span>{point}</span>
                     </li>

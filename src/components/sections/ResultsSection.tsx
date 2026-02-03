@@ -55,7 +55,7 @@ export const ResultsSection = () => {
                   <result.icon size={24} strokeWidth={1.5} />
                 </div>
                 <div className="text-3xl font-bold text-primary">{result.value}</div>
-                <p className="text-sm text-muted-foreground">{result.label}</p>
+                <p className="text-sm text-secondary-foreground/80">{result.label}</p>
               </GlassCard>
             </ScrollReveal>
           ))}

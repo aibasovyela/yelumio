@@ -68,7 +68,7 @@ export const PlatformsSection = () => {
                 </div>
                 <ul className="space-y-2">
                   {platform.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-muted-foreground text-sm">
+                    <li key={i} className="flex items-center gap-2 text-secondary-foreground/80 text-sm">
                       <Zap size={14} className="text-primary flex-shrink-0" />
                       <span>{feature}</span>
                     </li>

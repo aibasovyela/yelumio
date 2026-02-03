@@ -59,7 +59,7 @@ export const HiggsfieldSection = () => {
                         <span className="text-sm font-medium">{step.label}</span>
                       </div>
                       {index < pipelineSteps.length - 1 && (
-                        <ArrowRight size={20} className="mx-2 text-muted-foreground" />
+                        <ArrowRight size={20} className="mx-2 text-secondary-foreground/60" />
                       )}
                     </div>
                   ))}
@@ -75,7 +75,7 @@ export const HiggsfieldSection = () => {
                         <div key={i} className="aspect-square rounded-lg bg-primary/10 border border-primary/20" />
                       ))}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-4">Интерфейс платформы</p>
+                    <p className="text-xs text-secondary-foreground/60 mt-4">Интерфейс платформы</p>
                   </div>
                 </div>
               </GlassCard>
