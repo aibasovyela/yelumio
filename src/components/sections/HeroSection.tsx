@@ -1,8 +1,11 @@
 import { ArrowRight, Play, Lightbulb, Camera, Video, Music, Mic } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EnrollModal } from "@/components/EnrollModal";
+import { Typewriter } from "@/hooks/useTypewriter";
 
 export const HeroSection = () => {
+  const [showSubtitle, setShowSubtitle] = useState(false);
+  const [showContent, setShowContent] = useState(false);
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
 
   return (
@@ -17,27 +20,70 @@ export const HeroSection = () => {
         <div className="container relative z-10 pt-24 pb-16 py-[30px] my-0 border-none border">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
-            <div className="space-y-8 stagger-children">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
+            <div className="space-y-8">
+              <div 
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 transition-all duration-500 ${
+                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+              >
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-sm font-medium">Старт нового потока</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl">
-                Создавай креативы с помощью{" "}
-                <span className="neon-underline">ИИ</span>: от идеи до готового видео
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl min-h-[120px] md:min-h-[144px]">
+                <Typewriter 
+                  text="Создавай креативы с помощью"
+                  speed={40}
+                  delay={300}
+                  cursor={false}
+                  onComplete={() => setShowSubtitle(true)}
+                />{" "}
+                {showSubtitle && (
+                  <>
+                    <span className="neon-underline">
+                      <Typewriter 
+                        text="ИИ"
+                        speed={100}
+                        delay={0}
+                        cursor={false}
+                        onComplete={() => setShowContent(true)}
+                      />
+                    </span>
+                    {showContent && (
+                      <Typewriter 
+                        text=": от идеи до готового видео"
+                        speed={40}
+                        delay={0}
+                        cursor={true}
+                        cursorChar="▌"
+                      />
+                    )}
+                  </>
+                )}
               </h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
+              <p 
+                className={`text-lg md:text-xl text-muted-foreground max-w-xl transition-all duration-700 delay-300 ${
+                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+              >
                 Практический видеокурс про фото, видео, музыку и речь.
                 С домашними заданиями, проверкой работ и реальными кейсами.
               </p>
 
-              <p className="text-sm text-muted-foreground/80 italic">
+              <p 
+                className={`text-sm text-muted-foreground/80 italic transition-all duration-700 delay-500 ${
+                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+              >
                 Не просто нейросети — система, мышление и результат
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div 
+                className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-700 ${
+                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+              >
                 <button className="btn-primary gap-2" onClick={() => setIsEnrollOpen(true)}>
                   Записаться на курс
                   <ArrowRight size={18} />
