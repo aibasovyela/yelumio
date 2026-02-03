@@ -5,7 +5,7 @@ import { Lightbulb, FileText, Camera, Video, Music, AlertCircle } from "lucide-r
 const modules = [
   {
     icon: Lightbulb,
-    title: "IDEA",
+    title: "ИДЕЯ",
     points: [
       "Как рождается идея",
       "Как формулировать задачу для ИИ",
@@ -14,7 +14,7 @@ const modules = [
   },
   {
     icon: FileText,
-    title: "TEXT",
+    title: "ТЕКСТ",
     points: [
       "Как писать сценарии и хуки",
       "Как текст управляет визуалом",
@@ -23,7 +23,7 @@ const modules = [
   },
   {
     icon: Camera,
-    title: "PHOTO",
+    title: "ФОТО",
     points: [
       "ИИ для фото: продукт, сцены, персонажи",
       "Свет, ракурс, глубина",
@@ -32,7 +32,7 @@ const modules = [
   },
   {
     icon: Video,
-    title: "VIDEO",
+    title: "ВИДЕО",
     points: [
       "Как оживлять изображения",
       "Движение камеры и среды",
@@ -41,7 +41,7 @@ const modules = [
   },
   {
     icon: Music,
-    title: "MUSIC & SPEECH",
+    title: "МУЗЫКА И РЕЧЬ",
     points: [
       "Почему звук делает «дорого»",
       "Музыка, саунд-дизайн, голос",
@@ -100,9 +100,9 @@ export const Module0Section = () => {
           ))}
 
           {/* Mistakes card - spans full width on lg */}
-          <GlassCard className="md:col-span-2 lg:col-span-3 lg:max-w-3xl lg:mx-auto">
+          <GlassCard className="md:col-span-2 lg:col-span-3 lg:max-w-3xl lg:mx-auto bg-destructive/5 border-destructive/20">
             <div className="flex items-center gap-4 mb-6">
-              <IconBox icon={AlertCircle} className="bg-red-500/10" />
+              <IconBox icon={AlertCircle} className="bg-destructive/15" />
               <h3 className="text-xl font-bold">Типичные ошибки новичков</h3>
             </div>
             <div className="flex flex-wrap gap-3">

@@ -1,46 +1,53 @@
 import { ArrowRight, Play, Lightbulb, Camera, Video, Music, Mic } from "lucide-react";
+import { useState } from "react";
+import { EnrollModal } from "@/components/EnrollModal";
+
 export const HeroSection = () => {
-  return <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      </div>
+  const [isEnrollOpen, setIsEnrollOpen] = useState(false);
 
-      <div className="container relative z-10 pt-24 pb-16 py-[30px] my-0 border-none border">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-8 stagger-children">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-medium">Старт нового потока</span>
+  return (
+    <>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container relative z-10 pt-24 pb-16 py-[30px] my-0 border-none border">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Content */}
+            <div className="space-y-8 stagger-children">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm font-medium">Старт нового потока</span>
+              </div>
+
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl">
+                Создавай креативы с помощью{" "}
+                <span className="neon-underline">ИИ</span>: от идеи до готового видео
+              </h1>
+
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
+                Практический видеокурс про фото, видео, музыку и речь.
+                С домашними заданиями, проверкой работ и реальными кейсами.
+              </p>
+
+              <p className="text-sm text-muted-foreground/80 italic">
+                Не просто нейросети — система, мышление и результат
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="btn-primary gap-2" onClick={() => setIsEnrollOpen(true)}>
+                  Записаться на курс
+                  <ArrowRight size={18} />
+                </button>
+                <button className="btn-secondary gap-2">
+                  <Play size={18} />
+                  Смотреть программу
+                </button>
+              </div>
             </div>
-
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl">
-              Создавай креативы с помощью{" "}
-              <span className="neon-underline">ИИ</span>: от идеи до готового видео
-            </h1>
-
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-              Практический видеокурс про фото, видео, музыку и речь.
-              С домашними заданиями, проверкой работ и реальными кейсами.
-            </p>
-
-            <p className="text-sm text-muted-foreground/80 italic">
-              Не просто нейросети — система, мышление и результат
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="btn-primary gap-2">
-                Записаться на курс
-                <ArrowRight size={18} />
-              </button>
-              <button className="btn-secondary gap-2">
-                <Play size={18} />
-                Смотреть программу
-              </button>
-            </div>
-          </div>
 
           {/* Right Visual */}
           <div className="relative">
@@ -110,5 +117,9 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+
+      <EnrollModal open={isEnrollOpen} onOpenChange={setIsEnrollOpen} />
+    </>
+  );
 };
