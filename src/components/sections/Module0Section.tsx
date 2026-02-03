@@ -65,7 +65,7 @@ export const Module0Section = () => {
             </ScrollReveal>)}
 
           {/* Mistakes card - spans full width on lg */}
-          <GlassCard className="md:col-span-2 lg:col-span-3 lg:max-w-3xl lg:mx-auto bg-destructive/5 border-destructive/20">
+          <GlassCard className="md:col-span-2 lg:col-span-3 lg:max-w-3xl lg:mx-auto bg-destructive-foreground border-destructive/20">
             <div className="flex items-center gap-4 mb-6">
               <IconBox icon={AlertCircle} className="bg-destructive/15" />
               <h3 className="text-xl font-bold">Типичные ошибки новичков</h3>
