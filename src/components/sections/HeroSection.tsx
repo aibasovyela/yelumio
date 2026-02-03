@@ -42,7 +42,10 @@ export const HeroSection = () => {
                   Записаться на курс
                   <ArrowRight size={18} />
                 </button>
-                <button className="btn-secondary gap-2">
+                <button 
+                  className="btn-secondary gap-2"
+                  onClick={() => document.getElementById('program')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   <Play size={18} />
                   Смотреть программу
                 </button>
