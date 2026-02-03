@@ -54,8 +54,8 @@ export const HowItWorksSection = () => {
                 <div className="icon-box mx-auto">
                   <step.icon size={24} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-semibold">{step.title}</h3>
-                <p className="text-sm text-secondary-foreground/80">{step.description}</p>
+                <h3 className="font-semibold text-foreground">{step.title}</h3>
+                <p className="text-sm text-foreground/80">{step.description}</p>
               </GlassCard>
             </ScrollReveal>
           ))}
