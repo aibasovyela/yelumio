@@ -1,15 +1,13 @@
 import { ArrowRight, Play, Lightbulb, Camera, Video, Music, Mic } from "lucide-react";
-
 export const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="container relative z-10 pt-24 pb-16">
+      <div className="container relative z-10 pt-24 pb-16 py-[30px] my-0 border-none border">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8 stagger-children">
@@ -18,7 +16,7 @@ export const HeroSection = () => {
               <span className="text-sm font-medium">Старт нового потока</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl">
               Создавай креативы с помощью{" "}
               <span className="neon-underline">ИИ</span>: от идеи до готового видео
             </h1>
@@ -112,6 +110,5 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
