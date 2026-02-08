@@ -13,7 +13,7 @@ const platforms = [{
   features: ["Можно работать с телефона", "Быстрые визуалы", "Интуитивный интерфейс"]
 }, {
   icon: MessageCircle,
-  name: "Veo C",
+  name: "VeoSeeBot",
   highlight: "Идеален для новичков",
   features: ["Telegram-бот", "Можно без компьютера", "Простой старт"]
 }];
