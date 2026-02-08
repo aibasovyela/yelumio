@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ArrowRight, CreditCard } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -19,42 +19,28 @@ interface PricingEnrollModalProps {
 }
 
 const formSchema = z.object({
+  name: z.string().min(2, "Введите ваше имя"),
   phone: z.string().min(10, "Введите корректный номер телефона"),
   email: z.string().email("Введите корректный email"),
 });
 
-// Kaspi Gold card number for payments
-const KASPI_CARD_NUMBER = "4400430220735556";
-
-// Prices in tenge for each plan (without currency symbol)
-const planPrices: Record<string, number> = {
-  "Light": 0,
-  "Basic": 70000,
-  "PRO / Mentor": 120000,
-  "ELITE / Studio": 200000,
-};
-
-// Generate Kaspi payment deep link
-const getKaspiPaymentLink = (planName: string, amount: number) => {
-  // Kaspi Gold transfer deep link format
-  return `https://kaspi.kz/pay/P2PTransfer?pan=${KASPI_CARD_NUMBER}&amt=${amount}`;
-};
-
 export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: PricingEnrollModalProps) => {
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("+7");
   const [email, setEmail] = useState("");
-  const [errors, setErrors] = useState<{ phone?: string; email?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; email?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const result = formSchema.safeParse({ phone, email });
+    const result = formSchema.safeParse({ name, phone, email });
     
     if (!result.success) {
-      const fieldErrors: { phone?: string; email?: string } = {};
+      const fieldErrors: { name?: string; phone?: string; email?: string } = {};
       result.error.errors.forEach((err) => {
+        if (err.path[0] === "name") fieldErrors.name = err.message;
         if (err.path[0] === "phone") fieldErrors.phone = err.message;
         if (err.path[0] === "email") fieldErrors.email = err.message;
       });
@@ -70,6 +56,7 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
         body: {
           type: "pricing",
           plan: planName,
+          name,
           email,
           phone,
         },
@@ -79,18 +66,12 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
 
       toast({
         title: "Заявка отправлена!",
-        description: "Переходим к оплате через Kaspi...",
+        description: "Мы свяжемся с вами в ближайшее время",
       });
-
-      // Open Kaspi payment link
-      const amount = planPrices[planName] || 0;
-      if (amount > 0) {
-        const paymentLink = getKaspiPaymentLink(planName, amount);
-        window.open(paymentLink, "_blank");
-      }
       
       onOpenChange(false);
-      setPhone("");
+      setName("");
+      setPhone("+7");
       setEmail("");
     } catch (error) {
       console.error("Error sending to Telegram:", error);
@@ -108,13 +89,6 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
     if (planName === "ELITE / Studio") return "text-[#9ab800]";
     if (planName === "PRO / Mentor") return "text-primary";
     return "text-foreground";
-  };
-
-  const getButtonStyle = () => {
-    if (planName === "ELITE / Studio") {
-      return "w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 bg-[#dffb24] text-foreground hover:shadow-lg hover:shadow-[#dffb24]/30";
-    }
-    return "btn-primary w-full gap-2";
   };
 
   return (
@@ -147,11 +121,26 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="phone" className="text-sm font-medium">
-                Номер телефона
+              <label htmlFor="pricing-name" className="text-sm font-medium">
+                Имя
               </label>
               <input
-                id="phone"
+                id="pricing-name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Введите ваше имя"
+                className="w-full px-4 py-3 rounded-xl bg-card border border-border focus:border-primary focus:outline-none transition-colors"
+              />
+              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="pricing-phone" className="text-sm font-medium">
+                Номер телефона (WhatsApp)
+              </label>
+              <input
+                id="pricing-phone"
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -162,11 +151,11 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium">
+              <label htmlFor="pricing-email" className="text-sm font-medium">
                 Email
               </label>
               <input
-                id="email"
+                id="pricing-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -178,15 +167,14 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
 
             <button
               type="submit"
-              className={getButtonStyle()}
+              className="btn-primary w-full gap-2"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 "Отправка..."
               ) : (
                 <>
-                  <CreditCard size={18} />
-                  Перейти к оплате
+                  Оставить заявку
                   <ArrowRight size={18} />
                 </>
               )}
@@ -194,7 +182,7 @@ export const PricingEnrollModal = ({ open, onOpenChange, planName, planPrice }: 
           </form>
 
           <p className="text-xs text-muted-foreground text-center">
-            После заполнения откроется Kaspi для перевода на карту
+            Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
           </p>
         </div>
       </DialogContent>
