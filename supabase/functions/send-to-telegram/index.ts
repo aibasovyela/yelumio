@@ -40,7 +40,7 @@ const handler = async (req: Request): Promise<Response> => {
     } else if (data.type === 'question') {
       message = `❓ *Новый вопрос*\n\n📧 Email: ${data.email || 'Не указан'}\n📞 Телефон: ${data.phone || 'Не указан'}\n\n💬 Вопрос:\n${data.question || 'Не указан'}`;
     } else if (data.type === 'pricing') {
-      message = `💰 *Заявка на тариф "${data.plan}"*\n\n📧 Email: ${data.email || 'Не указан'}\n📞 Телефон: ${data.phone || 'Не указан'}`;
+      message = `💰 *Заявка на тариф "${data.plan}"*\n\n👤 Имя: ${data.name || 'Не указано'}\n📧 Email: ${data.email || 'Не указан'}\n📞 Телефон: ${data.phone || 'Не указан'}`;
     }
 
     const telegramResponse = await fetch(
