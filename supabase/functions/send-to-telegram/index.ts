@@ -7,6 +7,7 @@ const corsHeaders = {
 
 interface TelegramMessage {
   type: 'enroll' | 'question' | 'pricing';
+  plan?: string;
   name?: string;
   contact?: string;
   email?: string;
@@ -36,7 +37,7 @@ const handler = async (req: Request): Promise<Response> => {
     let message = '';
 
     if (data.type === 'enroll') {
-      message = `🎓 *Новая заявка на курс*\n\n👤 Имя: ${data.name || 'Не указано'}\n📞 Контакт: ${data.contact || 'Не указан'}`;
+      message = `🎓 *Новая заявка на курс*\n\n👤 Имя: ${data.name || 'Не указано'}\n📞 Телефон: ${data.contact || 'Не указан'}\n📋 Тариф: ${data.plan || 'Не выбран'}`;
     } else if (data.type === 'question') {
       message = `❓ *Новый вопрос*\n\n📧 Email: ${data.email || 'Не указан'}\n📞 Телефон: ${data.phone || 'Не указан'}\n\n💬 Вопрос:\n${data.question || 'Не указан'}`;
     } else if (data.type === 'pricing') {

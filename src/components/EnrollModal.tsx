@@ -6,35 +6,39 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface EnrollModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
+const tariffs = [
+  { value: "light", label: "Light — 40 000 ₸" },
+  { value: "basic", label: "Basic — 70 000 ₸" },
+  { value: "pro", label: "PRO / Mentor — 120 000 ₸" },
+  { value: "elite", label: "ELITE / Studio — 200 000 ₸" },
+];
+
 export const EnrollModal = ({ open, onOpenChange }: EnrollModalProps) => {
   const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
+  const [phone, setPhone] = useState("+7");
+  const [selectedTariff, setSelectedTariff] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const benefits = [
-    "8 модулей с видеоуроками",
-    "Домашние задания с проверкой",
-    "Доступ к закрытому сообществу",
-    "Сертификат по окончании",
-  ];
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!name.trim() || !contact.trim()) {
+
+    if (!name.trim() || !phone.trim() || phone.trim() === "+7" || !selectedTariff) {
       toast({
         title: "Заполните все поля",
-        description: "Пожалуйста, укажите имя и контакт",
+        description: "Пожалуйста, укажите имя, телефон и выберите тариф",
         variant: "destructive",
       });
       return;
@@ -43,11 +47,13 @@ export const EnrollModal = ({ open, onOpenChange }: EnrollModalProps) => {
     setIsSubmitting(true);
 
     try {
+      const plan = tariffs.find((t) => t.value === selectedTariff)?.label || selectedTariff;
       const { error } = await supabase.functions.invoke("send-to-telegram", {
         body: {
           type: "enroll",
           name,
-          contact,
+          contact: phone,
+          plan,
         },
       });
 
@@ -59,7 +65,8 @@ export const EnrollModal = ({ open, onOpenChange }: EnrollModalProps) => {
       });
 
       setName("");
-      setContact("");
+      setPhone("+7");
+      setSelectedTariff("");
       onOpenChange(false);
     } catch (error) {
       console.error("Error sending to Telegram:", error);
@@ -85,61 +92,58 @@ export const EnrollModal = ({ open, onOpenChange }: EnrollModalProps) => {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
-          {/* Benefits list */}
-          <div className="space-y-3">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <CheckCircle size={18} className="text-primary flex-shrink-0" />
-                <span className="text-sm">{benefit}</span>
-              </div>
-            ))}
+        <form onSubmit={handleSubmit} className="space-y-5 py-4">
+          <div className="space-y-2">
+            <Label htmlFor="enroll-name">Имя</Label>
+            <Input
+              id="enroll-name"
+              type="text"
+              placeholder="Введите имя"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
           </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium">
-                Ваше имя
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Введите имя"
-                className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-              />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="enroll-phone">Номер телефона (WhatsApp)</Label>
+            <Input
+              id="enroll-phone"
+              type="tel"
+              placeholder="+7 (___) ___-__-__"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
 
-            <div className="space-y-2">
-              <label htmlFor="contact" className="text-sm font-medium">
-                Телефон или Email
-              </label>
-              <input
-                id="contact"
-                type="text"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                placeholder="+7 (___) ___-__-__ или email@example.com"
-                className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-              />
-            </div>
+          <div className="space-y-3">
+            <Label>Выберите тариф</Label>
+            <RadioGroup value={selectedTariff} onValueChange={setSelectedTariff} className="space-y-2">
+              {tariffs.map((tariff) => (
+                <div key={tariff.value} className="flex items-center space-x-3 rounded-xl border border-border px-4 py-3 cursor-pointer hover:bg-secondary/50 transition-colors">
+                  <RadioGroupItem value={tariff.value} id={tariff.value} />
+                  <Label htmlFor={tariff.value} className="cursor-pointer flex-1 text-sm font-normal">
+                    {tariff.label}
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
 
-            <button
-              type="submit"
-              className="btn-primary w-full gap-2"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Отправка..." : "Отправить заявку"}
-              {!isSubmitting && <ArrowRight size={18} />}
-            </button>
-          </form>
+          <button
+            type="submit"
+            className="btn-primary w-full gap-2"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Отправка..." : "Оставить заявку"}
+            {!isSubmitting && <ArrowRight size={18} />}
+          </button>
 
           <p className="text-xs text-muted-foreground text-center">
             Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
           </p>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );
