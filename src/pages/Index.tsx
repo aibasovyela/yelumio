@@ -18,11 +18,7 @@ const Index = () => {
       <main>
         <HeroSection />
         
-        <div id="module0">
-          <Module0Section />
-        </div>
-        
-        <PlatformsSection />
+        {/* Module0Section and PlatformsSection hidden to shorten the page */}
         
         <HiggsfieldSection />
         
