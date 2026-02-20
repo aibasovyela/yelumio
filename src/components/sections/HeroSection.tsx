@@ -4,7 +4,7 @@ import { EnrollModal } from "@/components/EnrollModal";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import authorPhoto from "@/assets/author-photo.png";
 
-const COURSE_START = new Date("2025-03-10T10:00:00");
+const COURSE_START = new Date("2026-03-10T10:00:00");
 
 export const HeroSection = () => {
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
