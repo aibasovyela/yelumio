@@ -13,8 +13,17 @@ interface TelegramMessage {
   email?: string;
   phone?: string;
   question?: string;
-  plan?: string;
 }
+
+// Escape Telegram Markdown special characters and enforce length limits
+function sanitize(input: string | undefined, maxLength: number, fallback: string): string {
+  if (!input || typeof input !== 'string') return fallback;
+  return input
+    .slice(0, maxLength)
+    .replace(/[*_`\[\]()~>#+=|{}.!\\-]/g, '\\$&');
+}
+
+const VALID_TYPES = new Set(['enroll', 'question', 'pricing']);
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === 'OPTIONS') {
@@ -25,32 +34,48 @@ const handler = async (req: Request): Promise<Response> => {
     const TELEGRAM_BOT_TOKEN = Deno.env.get('TELEGRAM_BOT_TOKEN');
     const TELEGRAM_CHAT_ID = Deno.env.get('TELEGRAM_CHAT_ID');
 
-    if (!TELEGRAM_BOT_TOKEN) {
-      throw new Error('TELEGRAM_BOT_TOKEN is not configured');
-    }
-    if (!TELEGRAM_CHAT_ID) {
-      throw new Error('TELEGRAM_CHAT_ID is not configured');
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      console.error('Telegram configuration missing');
+      return new Response(
+        JSON.stringify({ success: false, error: 'Service temporarily unavailable' }),
+        { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     const data: TelegramMessage = await req.json();
 
+    if (!data.type || !VALID_TYPES.has(data.type)) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Invalid request type' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     let message = '';
 
     if (data.type === 'enroll') {
-      message = `🎓 *Новая заявка на курс*\n\n👤 Имя: ${data.name || 'Не указано'}\n📞 Телефон: ${data.contact || 'Не указан'}\n📋 Тариф: ${data.plan || 'Не выбран'}`;
+      const name = sanitize(data.name, 100, 'Не указано');
+      const contact = sanitize(data.contact, 20, 'Не указан');
+      const plan = sanitize(data.plan, 100, 'Не выбран');
+      message = `🎓 *Новая заявка на курс*\n\n👤 Имя: ${name}\n📞 Телефон: ${contact}\n📋 Тариф: ${plan}`;
     } else if (data.type === 'question') {
-      message = `❓ *Новый вопрос*\n\n📧 Email: ${data.email || 'Не указан'}\n📞 Телефон: ${data.phone || 'Не указан'}\n\n💬 Вопрос:\n${data.question || 'Не указан'}`;
+      const email = sanitize(data.email, 255, 'Не указан');
+      const phone = sanitize(data.phone, 20, 'Не указан');
+      const question = sanitize(data.question, 1000, 'Не указан');
+      message = `❓ *Новый вопрос*\n\n📧 Email: ${email}\n📞 Телефон: ${phone}\n\n💬 Вопрос:\n${question}`;
     } else if (data.type === 'pricing') {
-      message = `💰 *Заявка на тариф "${data.plan}"*\n\n👤 Имя: ${data.name || 'Не указано'}\n📧 Email: ${data.email || 'Не указан'}\n📞 Телефон: ${data.phone || 'Не указан'}`;
+      const name = sanitize(data.name, 100, 'Не указано');
+      const email = sanitize(data.email, 255, 'Не указан');
+      const phone = sanitize(data.phone, 20, 'Не указан');
+      const plan = sanitize(data.plan, 100, 'Не выбран');
+      message = `💰 *Заявка на тариф "${plan}"*\n\n👤 Имя: ${name}\n📧 Email: ${email}\n📞 Телефон: ${phone}`;
     }
 
     const telegramResponse = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: TELEGRAM_CHAT_ID,
           text: message,
@@ -62,22 +87,25 @@ const handler = async (req: Request): Promise<Response> => {
     const result = await telegramResponse.json();
 
     if (!telegramResponse.ok) {
-      throw new Error(`Telegram API error: ${JSON.stringify(result)}`);
+      console.error('Telegram API error:', JSON.stringify(result));
+      return new Response(
+        JSON.stringify({ success: false, error: 'Unable to process your request. Please try again later.' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
-    console.log('Telegram message sent successfully:', result);
+    console.log('Telegram message sent successfully');
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error: unknown) {
-    console.error('Error sending to Telegram:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    return new Response(JSON.stringify({ success: false, error: errorMessage }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    console.error('Error processing request:', error);
+    return new Response(
+      JSON.stringify({ success: false, error: 'Unable to process your request. Please try again later.' }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   }
 };
 
