@@ -33,7 +33,7 @@ export const HeroSection = () => {
 
               <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl min-h-[120px] md:min-h-[144px]">
                 <Typewriter 
-                  text="Создавай креативы с помощью"
+                  text="Зарабатывай на"
                   speed={40}
                   delay={300}
                   cursor={false}
@@ -52,7 +52,7 @@ export const HeroSection = () => {
                     </span>
                     {showContent && (
                       <Typewriter 
-                        text=": от идеи до готового видео"
+                        text=" с телефоном сидя дома"
                         speed={40}
                         delay={0}
                         cursor={true}
