@@ -3,14 +3,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import slide01 from "@/assets/carousel/slide-01.png";
-import slide02 from "@/assets/carousel/slide-02.png";
-import slide03 from "@/assets/carousel/slide-03.png";
-import slide04 from "@/assets/carousel/slide-04.png";
-import slide05 from "@/assets/carousel/slide-05.png";
-import slide06 from "@/assets/carousel/slide-06.png";
-import slide07 from "@/assets/carousel/slide-07.png";
-import slide08 from "@/assets/carousel/slide-08.png";
+// Using optimized jpg images instead of heavy pngs
+import slide01 from "@/assets/carousel/slide-01.jpg";
+import slide02 from "@/assets/carousel/slide-02.jpg";
+import slide03 from "@/assets/carousel/slide-03.jpg";
+import slide04 from "@/assets/carousel/slide-04.jpg";
+import slide05 from "@/assets/carousel/slide-05.jpg";
+import slide06 from "@/assets/carousel/slide-06.jpg";
+import slide07 from "@/assets/carousel/slide-07.jpg";
+import slide08 from "@/assets/carousel/slide-08.jpg";
 
 const slides = [slide01, slide02, slide03, slide04, slide05, slide06, slide07, slide08];
 
@@ -64,13 +65,18 @@ export const ResultsSection = () => {
                     key={index}
                     className="flex-none w-[220px] sm:w-[260px] md:w-[280px] lg:w-[300px]"
                   >
-                    <div className="glass-card overflow-hidden group cursor-pointer">
+                    <div className="glass-card overflow-hidden group cursor-pointer bg-muted/20">
                       <div className="aspect-[9/16] relative overflow-hidden">
                         <img
                           src={src}
                           alt={`Пример работы ${index + 1}`}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
+                          loading={index < 2 ? "eager" : "lazy"}
+                          decoding="async"
+                          onLoad={(e) => {
+                            e.currentTarget.style.opacity = "1";
+                          }}
+                          style={{ opacity: 0, transition: "opacity 0.3s ease-in-out" }}
                         />
                       </div>
                     </div>
