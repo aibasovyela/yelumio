@@ -1,12 +1,12 @@
 import { ArrowRight, Play, Lightbulb, Camera, Video, Music, Mic } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { EnrollModal } from "@/components/EnrollModal";
-import { Typewriter } from "@/hooks/useTypewriter";
+import { CountdownTimer } from "@/components/CountdownTimer";
 import authorPhoto from "@/assets/author-photo.png";
 
+const COURSE_START = new Date("2025-03-10T10:00:00");
+
 export const HeroSection = () => {
-  const [showSubtitle, setShowSubtitle] = useState(false);
-  const [showContent, setShowContent] = useState(false);
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
 
   return (
@@ -22,69 +22,27 @@ export const HeroSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div className="space-y-8">
-              <div 
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 transition-all duration-500 ${
-                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-base font-bold tracking-wide uppercase">Начало 10 марта</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl min-h-[120px] md:min-h-[144px]">
-                <Typewriter 
-                  text="Зарабатывай на"
-                  speed={40}
-                  delay={300}
-                  cursor={false}
-                  onComplete={() => setShowSubtitle(true)}
-                />{" "}
-                {showSubtitle && (
-                  <>
-                    <span className="neon-underline">
-                      <Typewriter 
-                        text="ИИ"
-                        speed={100}
-                        delay={0}
-                        cursor={false}
-                        onComplete={() => setShowContent(true)}
-                      />
-                    </span>
-                    {showContent && (
-                      <Typewriter 
-                        text=" с телефоном сидя дома"
-                        speed={40}
-                        delay={0}
-                        cursor={true}
-                        cursorChar="▌"
-                      />
-                    )}
-                  </>
-                )}
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl">
+                Зарабатывай на{" "}
+                <span className="neon-underline">ИИ</span>
+                {" "}с телефоном сидя дома
               </h1>
 
-              <p 
-                className={`text-lg md:text-xl text-muted-foreground max-w-xl transition-all duration-700 delay-300 ${
-                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
                 Практический видеокурс про фото, видео, музыку и речь.
                 С домашними заданиями, проверкой работ и реальными кейсами.
               </p>
 
-              <p 
-                className={`text-sm text-muted-foreground/80 italic transition-all duration-700 delay-500 ${
-                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
+              <p className="text-sm text-muted-foreground/80 italic">
                 Не просто нейросети — система, мышление и результат
               </p>
 
-              <div 
-                className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-700 ${
-                  showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
+              <div className="flex flex-col sm:flex-row gap-4">
                 <button className="btn-primary gap-2" onClick={() => setIsEnrollOpen(true)}>
                   Записаться на курс
                   <ArrowRight size={18} />
@@ -96,6 +54,11 @@ export const HeroSection = () => {
                   <Play size={18} />
                   Смотреть программу
                 </button>
+              </div>
+
+              <div className="pt-2">
+                <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wide font-medium">До старта осталось:</p>
+                <CountdownTimer targetDate={COURSE_START} />
               </div>
             </div>
 

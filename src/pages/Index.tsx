@@ -9,6 +9,7 @@ import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { ResultsSection } from "@/components/sections/ResultsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { Footer } from "@/components/sections/Footer";
+import { StickyCTA } from "@/components/StickyCTA";
 
 const Index = () => {
   return (
@@ -40,6 +41,7 @@ const Index = () => {
       </main>
 
       <Footer />
+      <StickyCTA />
     </div>
   );
 };
