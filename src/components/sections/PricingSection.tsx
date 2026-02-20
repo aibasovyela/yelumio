@@ -134,7 +134,7 @@ export const PricingSection = () => {
             {/* Light Plan */}
             <ScrollReveal delay={100}>
               <div className="relative">
-                <GlassCard className="p-6 md:p-8 space-y-6 bg-yellow-50 border-yellow-400" hover={false}>
+                <GlassCard className="p-6 md:p-8 space-y-6 bg-yellow-50 border-yellow-400 glow-hover-yellow" hover={false}>
                   <div>
                     <h3 className="text-2xl font-bold">{lightPlan.name}</h3>
                     <div className="mt-4 flex items-baseline gap-1">
@@ -145,8 +145,8 @@ export const PricingSection = () => {
 
                   <ul className="space-y-3">
                     {lightPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-muted/30 flex items-center justify-center flex-shrink-0">
-                          <feature.icon size={12} />
+                        <div className="w-5 h-5 rounded-full bg-yellow-200 flex items-center justify-center flex-shrink-0">
+                          <feature.icon size={12} className="text-yellow-600" />
                         </div>
                         <span className="text-sm">{feature.text}</span>
                       </li>)}
@@ -165,7 +165,7 @@ export const PricingSection = () => {
             {/* Basic Plan */}
             <ScrollReveal delay={150}>
               <div className="relative">
-                <GlassCard className="p-6 md:p-8 space-y-6 bg-yellow-50 border-yellow-400">
+                <GlassCard className="p-6 md:p-8 space-y-6 bg-yellow-50 border-yellow-400 glow-hover-yellow" hover={false}>
                   <div>
                     <h3 className="text-2xl font-bold">{basicPlan.name}</h3>
                     <div className="mt-4 flex items-baseline gap-1">
@@ -176,8 +176,8 @@ export const PricingSection = () => {
 
                   <ul className="space-y-3">
                     {basicPlan.features.map((feature, index) => <li key={index} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                          <feature.icon size={12} />
+                        <div className="w-5 h-5 rounded-full bg-yellow-200 flex items-center justify-center flex-shrink-0">
+                          <feature.icon size={12} className="text-yellow-600" />
                         </div>
                         <span className="text-sm">{feature.text}</span>
                       </li>)}

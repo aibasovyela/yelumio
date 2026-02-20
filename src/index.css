@@ -213,6 +213,33 @@
     border-color: hsl(var(--primary) / 0.4);
   }
 
+  /* Yellow Glow Hover Effect */
+  .glow-hover-yellow {
+    @apply relative transition-all duration-400;
+  }
+
+  .glow-hover-yellow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(234, 179, 8, 0.08);
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .glow-hover-yellow:hover::after {
+    opacity: 1;
+  }
+
+  .glow-hover-yellow:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.3), 0 0 60px rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.6);
+  }
+
   /* Section spacing */
   .section-padding {
     @apply py-12 md:py-20;
