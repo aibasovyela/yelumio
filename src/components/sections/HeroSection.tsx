@@ -28,7 +28,7 @@ export const HeroSection = () => {
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-medium">Старт нового потока</span>
+                <span className="text-base font-bold tracking-wide uppercase">Начало 10 марта</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl min-h-[120px] md:min-h-[144px]">
