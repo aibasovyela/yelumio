@@ -1,6 +1,6 @@
 import { ScrollReveal } from "@/hooks/useScrollAnimation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 import video01 from "@/assets/carousel/video-01.mp4";
@@ -24,6 +24,40 @@ const slides: SlideItem[] = [
   { type: "video", src: video04 },
   { type: "image", src: slide08 },
 ];
+
+const LazyVideo = ({ src }: { src: string }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={isVisible ? src : undefined}
+      className="w-full h-full object-cover"
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="none"
+    />
+  );
+};
 
 export const ResultsSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -78,20 +112,13 @@ export const ResultsSection = () => {
                     <div className="glass-card overflow-hidden group cursor-pointer bg-muted/20">
                       <div className="aspect-[9/16] relative overflow-hidden">
                         {slide.type === "video" ? (
-                          <video
-                            src={slide.src}
-                            className="w-full h-full object-cover"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                          />
+                          <LazyVideo src={slide.src} />
                         ) : (
                           <img
                             src={slide.src}
                             alt={`Пример работы ${index + 1}`}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            loading={index < 2 ? "eager" : "lazy"}
+                            loading={index < 4 ? "eager" : "lazy"}
                             decoding="async"
                             onLoad={(e) => {
                               e.currentTarget.style.opacity = "1";

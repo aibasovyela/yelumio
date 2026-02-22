@@ -80,6 +80,9 @@ export const HeroSection = () => {
                       src={authorPhoto} 
                       alt="Автор курса" 
                       className="w-full max-w-[280px] md:max-w-xs h-auto object-cover rounded-xl"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                     />
                     {/* Subtle gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
