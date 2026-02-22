@@ -23,7 +23,7 @@ export const HeroSection = () => {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-primary" />
                 <span className="text-base font-bold tracking-wide uppercase">Начало 10 марта</span>
               </div>
 
@@ -71,9 +71,9 @@ export const HeroSection = () => {
             {/* Main photo container */}
             <div className="relative">
               {/* Wrapper for hover scale effect */}
-              <div className="transition-transform duration-300 hover:scale-105 cursor-pointer">
+              <div className="cursor-pointer">
                 {/* Photo with stylish frame */}
-                <div className="relative glass-card p-3 rounded-2xl animate-float-tilted">
+                <div className="relative glass-card p-3 rounded-2xl">
                   <div className="relative overflow-hidden rounded-xl">
                     <img
                       src={authorPhoto} 
@@ -90,35 +90,35 @@ export const HeroSection = () => {
               </div>
 
               {/* Floating UI panels around photo */}
-              <div className="absolute -top-4 -left-4 glass-card p-3 animate-float-fast-delayed shadow-lg">
+              <div className="absolute -top-4 -left-4 glass-card p-3 shadow-lg">
                 <div className="flex items-center gap-2">
                   <Lightbulb size={20} className="text-primary" strokeWidth={1.5} />
                   <span className="text-xs font-medium">ИДЕЯ</span>
                 </div>
               </div>
 
-              <div className="absolute top-1/4 -right-6 glass-card p-3 animate-float-fast shadow-lg">
+              <div className="absolute top-1/4 -right-6 glass-card p-3 shadow-lg">
                 <div className="flex items-center gap-2">
                   <Camera size={20} className="text-primary" strokeWidth={1.5} />
                   <span className="text-xs font-medium">ФОТО</span>
                 </div>
               </div>
 
-              <div className="absolute bottom-1/3 -left-8 glass-card p-3 animate-float-fast-delayed shadow-lg">
+              <div className="absolute bottom-1/3 -left-8 glass-card p-3 shadow-lg">
                 <div className="flex items-center gap-2">
                   <Video size={20} className="text-primary" strokeWidth={1.5} />
                   <span className="text-xs font-medium">ВИДЕО</span>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 right-1/4 glass-card p-3 animate-float-fast shadow-lg">
+              <div className="absolute -bottom-4 right-1/4 glass-card p-3 shadow-lg">
                 <div className="flex items-center gap-2">
                   <Music size={20} className="text-primary" strokeWidth={1.5} />
                   <span className="text-xs font-medium">ЗВУК</span>
                 </div>
               </div>
 
-              <div className="absolute bottom-1/4 -right-4 glass-card p-3 animate-float-fast-delayed shadow-lg">
+              <div className="absolute bottom-1/4 -right-4 glass-card p-3 shadow-lg">
                 <div className="flex items-center gap-2">
                   <Mic size={20} className="text-primary" strokeWidth={1.5} />
                   <span className="text-xs font-medium">РЕЧЬ</span>

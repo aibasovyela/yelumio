@@ -50,29 +50,9 @@ interface ScrollRevealProps {
 export function ScrollReveal({
   children,
   className = "",
-  delay = 0,
-  direction = "up",
 }: ScrollRevealProps) {
-  const [ref, isVisible] = useScrollAnimation<HTMLDivElement>();
-
-  const directionClasses = {
-    up: "translate-y-8",
-    down: "-translate-y-8",
-    left: "translate-x-8",
-    right: "-translate-x-8",
-    scale: "scale-95",
-  };
-
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${className} ${
-        isVisible
-          ? "opacity-100 translate-x-0 translate-y-0 scale-100"
-          : `opacity-0 ${directionClasses[direction]}`
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
+    <div className={className}>
       {children}
     </div>
   );
