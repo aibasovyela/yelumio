@@ -3,31 +3,29 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useCallback, useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import video01 from "@/assets/carousel/video-01.mp4";
 import slide02 from "@/assets/carousel/slide-02.jpg";
-import video02 from "@/assets/carousel/video-02.mp4";
 import slide04 from "@/assets/carousel/slide-04.jpg";
-import video03 from "@/assets/carousel/video-03.mp4";
 import slide06 from "@/assets/carousel/slide-06.jpg";
-import video04 from "@/assets/carousel/video-04.mp4";
 import slide08 from "@/assets/carousel/slide-08.jpg";
 
 type SlideItem = { type: "video"; src: string } | { type: "image"; src: string };
 
 const slides: SlideItem[] = [
-  { type: "video", src: video01 },
+  { type: "video", src: "/carousel/video-01.mp4" },
   { type: "image", src: slide02 },
-  { type: "video", src: video02 },
+  { type: "video", src: "/carousel/video-02.mp4" },
   { type: "image", src: slide04 },
-  { type: "video", src: video03 },
+  { type: "video", src: "/carousel/video-03.mp4" },
   { type: "image", src: slide06 },
-  { type: "video", src: video04 },
+  { type: "video", src: "/carousel/video-04.mp4" },
   { type: "image", src: slide08 },
 ];
 
 const LazyVideo = ({ src }: { src: string }) => {
-  const ref = useRef<HTMLVideoElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -39,23 +37,32 @@ const LazyVideo = ({ src }: { src: string }) => {
           observer.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "300px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <video
-      ref={ref}
-      src={isVisible ? src : undefined}
-      className="w-full h-full object-cover"
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="none"
-    />
+    <div ref={ref} className="w-full h-full relative">
+      {/* Skeleton placeholder */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-muted/40 animate-pulse rounded-xl" />
+      )}
+      {isVisible && (
+        <video
+          ref={videoRef}
+          src={src}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          onLoadedData={() => setIsLoaded(true)}
+        />
+      )}
+    </div>
   );
 };
 
