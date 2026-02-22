@@ -28,9 +28,8 @@ export const HeroSection = () => {
               </div>
 
               <h1 className="text-4xl md:text-5xl font-bold leading-tight lg:text-4xl">
-                Зарабатывай на{" "}
-                <span className="neon-underline">ИИ</span>
-                {" "}с телефоном сидя дома
+                Крутые <span className="neon-underline">ИИ</span> креативы всего за 1 месяц.{" "}
+                От идеи до монтажа.
               </h1>
 
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
