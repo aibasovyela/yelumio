@@ -22,7 +22,7 @@ export const StickyCTA = () => {
         <div className="bg-background/80 backdrop-blur-lg border-t border-border/50 py-3 px-4">
           <div className="container flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold">Старт курса 10 марта</p>
+              <p className="text-sm font-semibold">Старт курса 15 апреля</p>
               <p className="text-xs text-muted-foreground">Количество мест ограничено</p>
             </div>
             <button

@@ -55,10 +55,6 @@ export const HeroSection = () => {
                 </button>
               </div>
 
-              <div className="pt-2">
-                <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wide font-medium">До старта осталось:</p>
-                <CountdownTimer targetDate={COURSE_START} />
-              </div>
             </div>
 
           {/* Right Visual - Author Photo */}
