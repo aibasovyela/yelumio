@@ -3,6 +3,7 @@ import { useState } from "react";
 import { EnrollModal } from "@/components/EnrollModal";
 
 import authorPhoto from "@/assets/author-photo.png";
+import yelumioLogo from "@/assets/yelumio-logo.png";
 
 export const HeroSection = () => {
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
@@ -20,15 +21,25 @@ export const HeroSection = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div className="space-y-8">
+              {/* Yelumio Logo */}
+              <div>
+                <img 
+                  src={yelumioLogo} 
+                  alt="Yelumio" 
+                  className="h-14 md:h-18 w-auto object-contain"
+                  loading="eager"
+                />
+              </div>
+
               <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-gradient font-serif">Поток 2</h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-gradient">Поток 2</h2>
                 <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20">
                   <span className="w-2 h-2 rounded-full bg-primary" />
                   <span className="text-sm font-semibold tracking-widest uppercase text-primary">Начало 15 апреля</span>
                 </div>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] font-serif">
+              <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.15]">
                 Крутые <span className="neon-underline">ИИ</span> креативы за 1 месяц.{" "}
                 <span className="text-muted-foreground">От идеи до монтажа.</span>
               </h1>

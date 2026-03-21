@@ -20,7 +20,7 @@ export const HowItWorksSection = () => {
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Как проходит обучение
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -36,7 +36,7 @@ export const HowItWorksSection = () => {
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto">
                   <step.icon size={24} className="text-primary" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-semibold font-serif">{step.title}</h3>
+                <h3 className="font-semibold">{step.title}</h3>
                 <p className="text-sm text-muted-foreground">{step.description}</p>
               </GlassCard>
             </ScrollReveal>

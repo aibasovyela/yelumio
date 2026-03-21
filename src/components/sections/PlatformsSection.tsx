@@ -19,7 +19,7 @@ export const PlatformsSection = () => {
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Почему без подписок не получится
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -37,7 +37,7 @@ export const PlatformsSection = () => {
                     <platform.icon size={24} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg font-serif">{platform.name}</h3>
+                    <h3 className="font-bold text-lg">{platform.name}</h3>
                     <span className="text-xs text-primary font-medium">{platform.highlight}</span>
                   </div>
                 </div>

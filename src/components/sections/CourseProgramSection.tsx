@@ -60,7 +60,7 @@ export const CourseProgramSection = () => {
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Программа курса
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -83,7 +83,7 @@ export const CourseProgramSection = () => {
                         </div>
                         <div>
                           <span className="text-xs font-semibold text-primary uppercase tracking-wider">Модуль {module.number}</span>
-                          <p className="text-lg font-semibold font-serif">{module.title}</p>
+                          <p className="text-lg font-semibold">{module.title}</p>
                         </div>
                       </div>
                     </AccordionTrigger>
@@ -143,7 +143,7 @@ export const CourseProgramSection = () => {
           <div className="max-w-4xl mx-auto mt-16">
             <GlassCard className="p-8 md:p-10 border-primary/20">
               <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold font-serif mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">
                   Проверка домашних заданий — главный ускоритель
                 </h3>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

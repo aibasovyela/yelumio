@@ -27,7 +27,7 @@ export const HiggsfieldSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <ScrollReveal direction="left">
             <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 Почему мы работаем через{" "}
                 <span className="neon-underline">Higgsfield</span>
               </h2>
@@ -48,7 +48,7 @@ export const HiggsfieldSection = () => {
           <ScrollReveal direction="right" delay={200}>
             <div className="space-y-6">
               <div className="p-8 rounded-xl bg-primary/5 border border-primary/20 transition-all duration-300 hover:border-primary/40 hover:shadow-glow">
-                <h3 className="text-lg font-semibold font-serif mb-6 text-center">Пайплайн создания креатива</h3>
+                <h3 className="text-lg font-semibold mb-6 text-center">Пайплайн создания креатива</h3>
                 
                 <div className="flex items-center justify-center gap-2 md:gap-4">
                   {pipelineSteps.map((step, index) => (

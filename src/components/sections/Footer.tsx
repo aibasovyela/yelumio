@@ -11,7 +11,7 @@ export const Footer = () => {
               alt="Логотип" 
               className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="font-serif font-bold text-lg">ИИ-КРЕАТИВ</span>
+            <span className="font-bold text-lg">ИИ-КРЕАТИВ</span>
           </div>
           
           <nav className="flex items-center gap-8 text-sm text-muted-foreground">

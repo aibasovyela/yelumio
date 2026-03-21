@@ -13,11 +13,10 @@ export default {
   		}
   	},
   	extend: {
-  		fontFamily: {
-  			sans: ['DM Sans', 'system-ui', 'sans-serif'],
-  			serif: ['Playfair Display', 'Georgia', 'serif'],
-  			mono: ['JetBrains Mono', 'monospace']
-  		},
+		fontFamily: {
+			sans: ['DM Sans', 'system-ui', 'sans-serif'],
+			mono: ['JetBrains Mono', 'monospace']
+		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',

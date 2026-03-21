@@ -27,7 +27,7 @@ export const FAQSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <ScrollReveal direction="left">
               <div className="space-y-8 lg:sticky lg:top-24">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                   Остались вопросы?
                 </h2>
                 <p className="text-lg text-muted-foreground">
@@ -57,7 +57,7 @@ export const FAQSection = () => {
                     className="glass-card-static border-border px-6 data-[state=open]:border-primary/20 data-[state=open]:shadow-glow"
                   >
                     <AccordionTrigger className="hover:no-underline py-5 text-left">
-                      <span className="font-semibold pr-4 font-serif">{faq.question}</span>
+                      <span className="font-semibold pr-4">{faq.question}</span>
                     </AccordionTrigger>
                     <AccordionContent className="pb-5 text-muted-foreground">
                       {faq.answer}

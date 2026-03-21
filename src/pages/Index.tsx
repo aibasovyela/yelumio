@@ -28,20 +28,27 @@ const Index = () => {
         <HeroSection />
         
         <Suspense fallback={<SectionFallback />}>
-          <div id="program">
+          <div id="program" className="section-light">
             <CourseProgramSection />
           </div>
           
-          <HowItWorksSection />
+          <div className="section-dark">
+            <HowItWorksSection />
+          </div>
           
-          <WhyNowSection />
-          <NewEraSection />
+          <div className="section-light">
+            <WhyNowSection />
+          </div>
+
+          <div className="section-dark">
+            <NewEraSection />
+          </div>
           
-          <div id="pricing">
+          <div id="pricing" className="section-light">
             <PricingSection />
           </div>
           
-          <div id="faq">
+          <div id="faq" className="section-dark">
             <FAQSection />
           </div>
         </Suspense>
