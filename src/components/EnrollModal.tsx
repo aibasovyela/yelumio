@@ -19,7 +19,7 @@ interface EnrollModalProps {
 }
 
 const tariffs = [
-  { value: "light", label: "Light — 40 000 ₸" },
+  { value: "light", label: "Light — 50 000 ₸" },
   { value: "basic", label: "Basic — 70 000 ₸" },
   { value: "pro", label: "PRO / Mentor — 120 000 ₸" },
   { value: "elite", label: "ELITE / Studio — 200 000 ₸" },
