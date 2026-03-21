@@ -7,6 +7,9 @@ const videos = [
   "/carousel/showcase-01.mov",
   "/carousel/showcase-02.mov",
   "/carousel/showcase-03.mov",
+  "/carousel/showcase-04.mov",
+  "/carousel/showcase-05.mov",
+  "/carousel/showcase-06.mov",
 ];
 
 export const ShowcaseSection = () => {
