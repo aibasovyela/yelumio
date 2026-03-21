@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 const videos = [
   "/carousel/showcase-01.mov",
   "/carousel/showcase-02.mov",
+  "/carousel/showcase-03.mov",
 ];
 
 export const ShowcaseSection = () => {
