@@ -13,7 +13,7 @@ export const WhyNowSection = () => {
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Лучшее время учить ИИ — сейчас
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -32,7 +32,7 @@ export const WhyNowSection = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold font-serif">{reason.title}</h3>
+                  <h3 className="text-xl font-bold">{reason.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{reason.description}</p>
                 </div>
               </div>

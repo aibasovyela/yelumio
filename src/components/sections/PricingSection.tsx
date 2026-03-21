@@ -68,7 +68,7 @@ export const PricingSection = () => {
         <div className="container">
           <ScrollReveal>
             <div className="text-center mb-16 space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 Выберите свой тариф
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -82,7 +82,7 @@ export const PricingSection = () => {
             <ScrollReveal delay={100}>
               <GlassCard className="p-6 md:p-8 space-y-6" hover={false}>
                 <div>
-                  <h3 className="text-2xl font-bold font-serif">{lightPlan.name}</h3>
+                  <h3 className="text-2xl font-bold">{lightPlan.name}</h3>
                   <div className="mt-4 flex items-baseline gap-1">
                     <span className="text-3xl md:text-4xl font-bold">{lightPlan.price}</span>
                     <span className="text-lg text-muted-foreground">{lightPlan.currency}</span>
@@ -108,7 +108,7 @@ export const PricingSection = () => {
             <ScrollReveal delay={150}>
               <GlassCard className="p-6 md:p-8 space-y-6" hover={false}>
                 <div>
-                  <h3 className="text-2xl font-bold font-serif">{basicPlan.name}</h3>
+                  <h3 className="text-2xl font-bold">{basicPlan.name}</h3>
                   <div className="mt-4 flex items-baseline gap-1">
                     <span className="text-3xl md:text-4xl font-bold">{basicPlan.price}</span>
                     <span className="text-lg text-muted-foreground">{basicPlan.currency}</span>
@@ -141,7 +141,7 @@ export const PricingSection = () => {
                 </div>
                 <GlassCard className="relative p-6 md:p-8 space-y-6 border-primary/30">
                   <div>
-                    <h3 className="text-2xl font-bold font-serif">{proPlan.name}</h3>
+                    <h3 className="text-2xl font-bold">{proPlan.name}</h3>
                     <p className="text-sm text-primary font-medium mt-1">{proPlan.highlight}</p>
                     <div className="mt-4 flex items-baseline gap-1">
                       <span className="text-3xl md:text-4xl font-bold">{proPlan.price}</span>
@@ -179,7 +179,7 @@ export const PricingSection = () => {
                 </div>
                 <GlassCard className="relative p-6 md:p-8 space-y-6 border-primary/20" hover={false}>
                   <div>
-                    <h3 className="text-2xl font-bold font-serif">{elitePlan.name}</h3>
+                    <h3 className="text-2xl font-bold">{elitePlan.name}</h3>
                     <p className="text-sm text-primary font-medium mt-1">{elitePlan.highlight}</p>
                     <div className="mt-4 flex items-baseline gap-1">
                       <span className="text-3xl md:text-4xl font-bold">{elitePlan.price}</span>

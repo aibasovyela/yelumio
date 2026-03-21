@@ -15,7 +15,7 @@ export const NewEraSection = () => {
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Новая эра контента уже здесь
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ export const NewEraSection = () => {
           <div className="rounded-xl bg-card border border-border p-8 md:p-12">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
               <div className="space-y-6">
-                <h3 className="text-2xl md:text-3xl font-bold font-serif">
+                <h3 className="text-2xl md:text-3xl font-bold">
                   Генерируйте креативы профессионального уровня
                 </h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">

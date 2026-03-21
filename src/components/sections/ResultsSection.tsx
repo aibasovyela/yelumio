@@ -78,7 +78,7 @@ export const ResultsSection = () => {
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Чему вы научитесь?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

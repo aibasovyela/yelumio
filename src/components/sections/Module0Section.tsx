@@ -40,7 +40,7 @@ export const Module0Section = () => {
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
               <span className="text-sm font-semibold tracking-wide text-primary">С ЧЕГО ВСЁ НАЧИНАЕТСЯ</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Модуль 0. Фундамент ИИ-креатива
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -56,7 +56,7 @@ export const Module0Section = () => {
               <GlassCard className="space-y-4 h-full">
                 <div className="flex items-center gap-4">
                   <IconBox icon={module.icon} />
-                  <h3 className="text-xl font-bold font-serif">{module.title}</h3>
+                  <h3 className="text-xl font-bold">{module.title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {module.points.map((point, i) => (
@@ -73,7 +73,7 @@ export const Module0Section = () => {
           <GlassCard className="md:col-span-2 lg:col-span-3 lg:max-w-3xl lg:mx-auto border-destructive/20">
             <div className="flex items-center gap-4 mb-6">
               <IconBox icon={AlertCircle} className="bg-destructive/15" />
-              <h3 className="text-xl font-bold font-serif">Типичные ошибки новичков</h3>
+              <h3 className="text-xl font-bold">Типичные ошибки новичков</h3>
             </div>
             <div className="flex flex-wrap gap-3">
               {mistakes.map((mistake, index) => (
