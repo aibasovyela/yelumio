@@ -6,6 +6,7 @@ import { lazy, Suspense } from "react";
 const CourseProgramSection = lazy(() => import("@/components/sections/CourseProgramSection").then(m => ({ default: m.CourseProgramSection })));
 const HowItWorksSection = lazy(() => import("@/components/sections/HowItWorksSection").then(m => ({ default: m.HowItWorksSection })));
 const WhyNowSection = lazy(() => import("@/components/sections/WhyNowSection").then(m => ({ default: m.WhyNowSection })));
+const Module0Section = lazy(() => import("@/components/sections/Module0Section").then(m => ({ default: m.Module0Section })));
 const NewEraSection = lazy(() => import("@/components/sections/NewEraSection").then(m => ({ default: m.NewEraSection })));
 const ShowcaseSection = lazy(() => import("@/components/sections/ShowcaseSection").then(m => ({ default: m.ShowcaseSection })));
 const PricingSection = lazy(() => import("@/components/sections/PricingSection").then(m => ({ default: m.PricingSection })));
@@ -32,8 +33,11 @@ const Index = () => {
           <div className="section-light">
             <ShowcaseSection />
           </div>
+          <div id="module0" className="section-dark">
+            <Module0Section />
+          </div>
 
-          <div id="program" className="section-dark">
+          <div id="program" className="section-light">
             <CourseProgramSection />
           </div>
           
