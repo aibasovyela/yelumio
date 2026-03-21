@@ -14,39 +14,9 @@ export default {
   	},
   	extend: {
   		fontFamily: {
-  			sans: [
-  				'Lato',
-  				'ui-sans-serif',
-  				'system-ui',
-  				'-apple-system',
-  				'BlinkMacSystemFont',
-  				'Segoe UI',
-  				'Roboto',
-  				'Helvetica Neue',
-  				'Arial',
-  				'Noto Sans',
-  				'sans-serif'
-  			],
-  			serif: [
-  				'EB Garamond',
-  				'ui-serif',
-  				'Georgia',
-  				'Cambria',
-  				'Times New Roman',
-  				'Times',
-  				'serif'
-  			],
-  			mono: [
-  				'Fira Code',
-  				'ui-monospace',
-  				'SFMono-Regular',
-  				'Menlo',
-  				'Monaco',
-  				'Consolas',
-  				'Liberation Mono',
-  				'Courier New',
-  				'monospace'
-  			]
+  			sans: ['DM Sans', 'system-ui', 'sans-serif'],
+  			serif: ['Playfair Display', 'Georgia', 'serif'],
+  			mono: ['JetBrains Mono', 'monospace']
   		},
   		colors: {
   			border: 'hsl(var(--border))',
@@ -90,58 +60,26 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)',
-  			'2xl': '1.5rem',
-  			'3xl': '2rem'
+  			'2xl': '1rem',
+  			'3xl': '1.5rem'
   		},
   		boxShadow: {
-  			soft: '0 4px 30px hsl(220 20% 10% / 0.06)',
-				glow: 'var(--shadow-glow)',
-				'glow-lg': 'var(--shadow-glow-lg)',
-  			card: '0 8px 40px hsl(220 20% 10% / 0.08)',
-  			'2xs': 'var(--shadow-2xs)',
-  			xs: 'var(--shadow-xs)',
-  			sm: 'var(--shadow-sm)',
-  			md: 'var(--shadow-md)',
-  			lg: 'var(--shadow-lg)',
-  			xl: 'var(--shadow-xl)',
-  			'2xl': 'var(--shadow-2xl)'
+  			glow: 'var(--shadow-glow)',
+  			'glow-lg': 'var(--shadow-glow-lg)',
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0',
-  					opacity: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)',
-  					opacity: '1'
-  				}
+  				from: { height: '0', opacity: '0' },
+  				to: { height: 'var(--radix-accordion-content-height)', opacity: '1' }
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)',
-  					opacity: '1'
-  				},
-  				to: {
-  					height: '0',
-  					opacity: '0'
-  				}
+  				from: { height: 'var(--radix-accordion-content-height)', opacity: '1' },
+  				to: { height: '0', opacity: '0' }
   			},
-  			'content-show': {
-  				from: {
-  					opacity: '0',
-  					transform: 'translateY(-8px)'
-  				},
-  				to: {
-  					opacity: '1',
-  					transform: 'translateY(0)'
-  				}
-  			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.3s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'content-show': 'content-show 0.3s ease-out 0.1s forwards'
   		}
   	}
   },
