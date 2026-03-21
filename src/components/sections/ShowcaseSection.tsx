@@ -79,7 +79,7 @@ export const ShowcaseSection = () => {
                             : "border-border scale-90 opacity-40 blur-[2px]"
                         }`}
                       >
-                        <div className="h-[60vh] md:h-[70vh] aspect-[9/16] relative overflow-hidden bg-secondary">
+                        <div className="aspect-[9/16] w-full relative overflow-hidden bg-secondary">
                           <video
                             ref={(el) => { videoRefs.current[index] = el; }}
                             src={src}
