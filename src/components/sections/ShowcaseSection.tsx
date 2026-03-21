@@ -65,17 +65,17 @@ export const ShowcaseSection = () => {
                   return (
                     <div
                       key={index}
-                      className="flex-none px-3 transition-all duration-500"
-                      style={{ flexBasis: "70%", minWidth: 0 }}
+                      className="flex-none px-3 transition-all duration-500 flex justify-center"
+                      style={{ flexBasis: "50%", minWidth: 0 }}
                     >
                       <div
-                        className={`overflow-hidden rounded-2xl border transition-all duration-500 ${
+                        className={`overflow-hidden rounded-2xl border transition-all duration-500 w-fit ${
                           isActive
                             ? "border-primary/30 shadow-[0_0_40px_hsl(var(--primary)/0.15)] scale-100 opacity-100"
                             : "border-border scale-90 opacity-40 blur-[2px]"
                         }`}
                       >
-                        <div className="aspect-[9/16] max-h-[70vh] relative overflow-hidden bg-secondary">
+                        <div className="h-[60vh] md:h-[70vh] aspect-[9/16] relative overflow-hidden bg-secondary">
                           <video
                             ref={(el) => { videoRefs.current[index] = el; }}
                             src={src}
