@@ -23,9 +23,6 @@ export const HowItWorksSection = () => {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Как проходит обучение
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Практический формат с фокусом на результат. Примерное время одного модуля: 1 час.
-            </p>
           </div>
         </ScrollReveal>
 
