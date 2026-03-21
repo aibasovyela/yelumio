@@ -33,8 +33,11 @@ const Index = () => {
           <div className="section-light">
             <ShowcaseSection />
           </div>
+          <div id="module0" className="section-dark">
+            <Module0Section />
+          </div>
 
-          <div id="program" className="section-dark">
+          <div id="program" className="section-light">
             <CourseProgramSection />
           </div>
           
