@@ -5,7 +5,7 @@ import { useState } from "react";
 import { PricingEnrollModal } from "@/components/PricingEnrollModal";
 
 const lightPlan = {
-  name: "Light", price: "40 000", currency: "₸",
+  name: "Light", price: "50 000", currency: "₸",
   features: [
     { icon: Video, text: "Доступ ко всем 8 модулям" },
     { icon: Zap, text: "5–6 часов видео" },
@@ -44,7 +44,7 @@ const elitePlan = {
   description: "Это уже не просто обучение, а совместное продакшн-мышление.",
   features: [
     { icon: Check, text: "Всё из тарифа PRO / Mentor" },
-    { icon: Briefcase, text: "1 реальный платный заказ от компании (40 000–60 000 ₸)", sub: "портфолио, клиенты, бренд — создаем на деле" },
+    { icon: Briefcase, text: "1 реальный платный заказ от компании (30 000 ₸)", sub: "портфолио, клиенты, бренд — создаем на деле" },
     { icon: Sparkles, text: "Совместная сборка 1 креатива «под ключ»", sub: "идея → промпт → визуал → видео → звук → финал" },
     { icon: Zap, text: "Разбор промптов и пайплайна до идеала" },
     { icon: Star, text: "Приоритетная обратная связь" },
