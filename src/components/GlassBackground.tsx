@@ -1,112 +1,192 @@
-import { useEffect, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useMemo } from "react";
+import * as THREE from "three";
 
 /**
- * Full-page fixed background with bright abstract yellow orbs
- * that smoothly translate on scroll (parallax).
+ * A single flowing 3D ribbon/tube that gently animates.
  */
-export const GlassBackground = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+function Ribbon({
+  curve,
+  radius = 0.18,
+  color = "#FFCC00",
+  speed = 0.15,
+  phaseOffset = 0,
+}: {
+  curve: THREE.CatmullRomCurve3;
+  radius?: number;
+  color?: string;
+  speed?: number;
+  phaseOffset?: number;
+}) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const materialRef = useRef<THREE.MeshPhysicalMaterial>(null);
+  const basePoints = useMemo(() => curve.points.map((p) => p.clone()), [curve]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (!containerRef.current) return;
-      const y = window.scrollY;
-      const children = containerRef.current.children;
-      for (let i = 0; i < children.length; i++) {
-        const el = children[i] as HTMLElement;
-        const speed = parseFloat(el.dataset.speed || "0.05");
-        const direction = i % 2 === 0 ? 1 : -1;
-        const translateY = y * speed * direction;
-        const translateX = y * speed * 0.3 * (i % 3 === 0 ? 1 : -1);
-        el.style.transform = `translate(${translateX}px, ${translateY}px)`;
-      }
-    };
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime() * speed + phaseOffset;
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    // Gently deform control points
+    curve.points.forEach((point, i) => {
+      const base = basePoints[i];
+      point.x = base.x + Math.sin(t + i * 0.7) * 0.3;
+      point.y = base.y + Math.cos(t * 0.8 + i * 0.5) * 0.25;
+      point.z = base.z + Math.sin(t * 0.6 + i * 1.1) * 0.2;
+    });
+
+    if (meshRef.current) {
+      const tubeGeo = new THREE.TubeGeometry(curve, 120, radius, 16, false);
+      meshRef.current.geometry.dispose();
+      meshRef.current.geometry = tubeGeo;
+    }
+  });
+
+  const geometry = useMemo(
+    () => new THREE.TubeGeometry(curve, 120, radius, 16, false),
+    [curve, radius]
+  );
+
+  return (
+    <mesh ref={meshRef} geometry={geometry}>
+      <meshPhysicalMaterial
+        ref={materialRef}
+        color={color}
+        roughness={0.15}
+        metalness={0.6}
+        clearcoat={1}
+        clearcoatRoughness={0.1}
+        transmission={0.3}
+        thickness={1.5}
+        ior={1.5}
+        envMapIntensity={1.2}
+        transparent
+        opacity={0.85}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+}
+
+/**
+ * Multiple ribbons forming the abstract background.
+ */
+function RibbonScene() {
+  const ribbons = useMemo(() => {
+    return [
+      // Large sweeping ribbon — top-right flowing down-left
+      {
+        points: [
+          new THREE.Vector3(4, 3, -2),
+          new THREE.Vector3(2.5, 2, -1),
+          new THREE.Vector3(0.5, 1.5, 0),
+          new THREE.Vector3(-1, 0.5, -1.5),
+          new THREE.Vector3(-2.5, -0.5, -0.5),
+          new THREE.Vector3(-4, -2, -2),
+        ],
+        radius: 0.22,
+        speed: 0.12,
+        color: "#FFCC00",
+        phase: 0,
+      },
+      // Medium ribbon — left side flowing across
+      {
+        points: [
+          new THREE.Vector3(-4, 2, -1),
+          new THREE.Vector3(-2, 1, 0.5),
+          new THREE.Vector3(0, -0.5, -1),
+          new THREE.Vector3(2, -1.5, 0),
+          new THREE.Vector3(3.5, -2.5, -1.5),
+        ],
+        radius: 0.18,
+        speed: 0.18,
+        color: "#FFD633",
+        phase: 2,
+      },
+      // Thin accent ribbon — center
+      {
+        points: [
+          new THREE.Vector3(-3, -1, 0),
+          new THREE.Vector3(-1, 0.5, 1),
+          new THREE.Vector3(1, 1, -0.5),
+          new THREE.Vector3(3, 0, 0.5),
+          new THREE.Vector3(4.5, -1, -1),
+        ],
+        radius: 0.12,
+        speed: 0.22,
+        color: "#E6B800",
+        phase: 4,
+      },
+      // Background large ribbon — depth
+      {
+        points: [
+          new THREE.Vector3(3, -3, -3),
+          new THREE.Vector3(1, -1.5, -2),
+          new THREE.Vector3(-1, 0, -2.5),
+          new THREE.Vector3(-3, 1.5, -3),
+          new THREE.Vector3(-4, 3, -2.5),
+        ],
+        radius: 0.25,
+        speed: 0.1,
+        color: "#CC9900",
+        phase: 1,
+      },
+      // Small foreground accent
+      {
+        points: [
+          new THREE.Vector3(2, 2.5, 1),
+          new THREE.Vector3(0.5, 1.5, 0.5),
+          new THREE.Vector3(-1, 0, 1),
+          new THREE.Vector3(-2.5, -1.5, 0),
+        ],
+        radius: 0.1,
+        speed: 0.25,
+        color: "#FFE066",
+        phase: 3,
+      },
+    ];
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" ref={containerRef}>
-      {/* Large bright orb — top right */}
-      <div
-        data-speed="0.03"
-        className="absolute -top-10 -right-10 w-[700px] h-[700px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, hsl(48 100% 50% / 0.5) 0%, hsl(48 100% 50% / 0.15) 40%, transparent 65%)",
-          filter: "blur(60px)",
-        }}
-      />
+    <>
+      {/* Lighting for glossy reflections */}
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
+      <directionalLight position={[-3, 2, 4]} intensity={0.6} color="#FFE599" />
+      <pointLight position={[0, 0, 3]} intensity={0.8} color="#FFCC00" distance={12} />
+      <pointLight position={[-4, -2, 2]} intensity={0.4} color="#FFD633" distance={10} />
 
-      {/* Medium orb — left center */}
-      <div
-        data-speed="0.06"
-        className="absolute top-[25%] -left-20 w-[550px] h-[550px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, hsl(42 95% 50% / 0.45) 0%, hsl(48 100% 50% / 0.1) 45%, transparent 70%)",
-          filter: "blur(50px)",
-        }}
-      />
+      {ribbons.map((r, i) => (
+        <Ribbon
+          key={i}
+          curve={new THREE.CatmullRomCurve3(r.points)}
+          radius={r.radius}
+          speed={r.speed}
+          color={r.color}
+          phaseOffset={r.phase}
+        />
+      ))}
+    </>
+  );
+}
 
-      {/* Bright orb — center right */}
+export const GlassBackground = () => {
+  return (
+    <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* Subtle radial glow behind the ribbons */}
       <div
-        data-speed="0.08"
-        className="absolute top-[50%] right-[15%] w-[400px] h-[400px] rounded-full"
+        className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, hsl(48 100% 55% / 0.4) 0%, hsl(45 100% 50% / 0.08) 50%, transparent 70%)",
-          filter: "blur(40px)",
+          background:
+            "radial-gradient(ellipse at 30% 20%, hsl(48 100% 50% / 0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, hsl(48 100% 50% / 0.06) 0%, transparent 50%)",
         }}
       />
-
-      {/* Accent orb — bottom right */}
-      <div
-        data-speed="0.1"
-        className="absolute top-[70%] right-[5%] w-[350px] h-[350px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, hsl(45 100% 50% / 0.5) 0%, hsl(48 100% 50% / 0.1) 45%, transparent 65%)",
-          filter: "blur(45px)",
-        }}
-      />
-
-      {/* Bottom left orb */}
-      <div
-        data-speed="0.04"
-        className="absolute top-[85%] -left-10 w-[500px] h-[500px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, hsl(48 90% 55% / 0.4) 0%, hsl(48 100% 50% / 0.08) 50%, transparent 70%)",
-          filter: "blur(55px)",
-        }}
-      />
-
-      {/* Elongated shape — top left */}
-      <div
-        data-speed="0.07"
-        className="absolute top-[8%] left-[15%] w-[250px] h-[500px] rounded-[50%] rotate-[35deg]"
-        style={{
-          background: "radial-gradient(ellipse, hsl(48 100% 50% / 0.35) 0%, transparent 60%)",
-          filter: "blur(50px)",
-        }}
-      />
-
-      {/* Small intense orb — mid-left */}
-      <div
-        data-speed="0.09"
-        className="absolute top-[40%] left-[30%] w-[200px] h-[200px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, hsl(48 100% 50% / 0.55) 0%, transparent 60%)",
-          filter: "blur(35px)",
-        }}
-      />
-
-      {/* Diffuse glow — bottom center */}
-      <div
-        data-speed="0.05"
-        className="absolute top-[60%] left-[40%] w-[600px] h-[300px] rounded-[50%]"
-        style={{
-          background: "radial-gradient(ellipse, hsl(48 100% 50% / 0.2) 0%, transparent 60%)",
-          filter: "blur(60px)",
-        }}
-      />
+      <Canvas
+        camera={{ position: [0, 0, 6], fov: 50 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: true, alpha: true }}
+        style={{ background: "transparent" }}
+      >
+        <RibbonScene />
+      </Canvas>
     </div>
   );
 };
