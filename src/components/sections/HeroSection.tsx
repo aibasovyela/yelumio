@@ -39,13 +39,9 @@ export const HeroSection = () => {
                 <span className="text-muted-foreground">От идеи до монтажа.</span>
               </h1>
 
-              <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+              <p className="text-lg text-foreground max-w-xl leading-relaxed">
                 Практический видеокурс про фото, видео, музыку и речь.
                 С домашними заданиями, проверкой работ и реальными кейсами.
-              </p>
-
-              <p className="text-sm text-muted-foreground/60 italic font-light">
-                Не просто нейросети — система, мышление и результат
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
