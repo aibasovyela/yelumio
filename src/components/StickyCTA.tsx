@@ -19,7 +19,7 @@ export const StickyCTA = () => {
           visible ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="bg-background/90 backdrop-blur-xl border-t border-border/50 py-3 px-4">
+        <div className="bg-[hsl(240_5%_10%/0.7)] backdrop-blur-2xl border-t border-[hsl(0_0%_100%/0.08)] py-3 px-4">
           <div className="container flex items-center justify-between gap-4">
             <div className="hidden sm:block">
               <p className="text-sm font-semibold">Старт курса 15 апреля</p>

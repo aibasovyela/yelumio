@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { StickyCTA } from "@/components/StickyCTA";
+import { GlassBackground } from "@/components/GlassBackground";
 import { lazy, Suspense } from "react";
 
 const CourseProgramSection = lazy(() => import("@/components/sections/CourseProgramSection").then(m => ({ default: m.CourseProgramSection })));
@@ -23,40 +24,45 @@ const SectionFallback = () => (
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      
-      <main>
-        <HeroSection />
+    <div className="min-h-screen bg-background relative">
+      {/* Animated abstract background with yellow orbs */}
+      <GlassBackground />
+
+      {/* All content above the background */}
+      <div className="relative z-10">
+        <Header />
         
-        <Suspense fallback={<SectionFallback />}>
-          <div className="section-light">
+        <main>
+          <HeroSection />
+          
+          <Suspense fallback={<SectionFallback />}>
             <ShowcaseSection />
-          </div>
-          {/* Module0Section hidden */}
-          {/* HowItWorksSection hidden */}
 
-          <div id="program" className="section-light">
-            <CourseProgramSection />
-          </div>
-          
-          {/* WhyNowSection hidden */}
-          {/* NewEraSection hidden */}
-          
-          <div id="pricing" className="section-dark">
-            <PricingSection />
-          </div>
-          
-          <div id="faq" className="section-light">
-            <FAQSection />
-          </div>
+            {/* Module0Section hidden */}
+            {/* HowItWorksSection hidden */}
+
+            <div id="program">
+              <CourseProgramSection />
+            </div>
+            
+            {/* WhyNowSection hidden */}
+            {/* NewEraSection hidden */}
+            
+            <div id="pricing">
+              <PricingSection />
+            </div>
+            
+            <div id="faq">
+              <FAQSection />
+            </div>
+          </Suspense>
+        </main>
+
+        <Suspense fallback={null}>
+          <Footer />
         </Suspense>
-      </main>
-
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-      <StickyCTA />
+        <StickyCTA />
+      </div>
     </div>
   );
 };

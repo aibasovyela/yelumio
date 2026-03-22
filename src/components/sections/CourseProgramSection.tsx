@@ -56,7 +56,7 @@ const reviewScale = [
 
 export const CourseProgramSection = () => {
   return (
-    <section className="section-padding bg-secondary/30">
+    <section className="section-padding">
       <div className="container">
         <ScrollReveal>
           <div className="text-center mb-16 space-y-4">

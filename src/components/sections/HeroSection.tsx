@@ -11,11 +11,6 @@ export const HeroSection = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Subtle gradient orbs */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
-        </div>
 
         <div className="container relative z-10 pt-28 pb-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -76,7 +71,7 @@ export const HeroSection = () => {
               
               <div className="relative">
                 <div className="cursor-pointer">
-                  <div className="relative p-3 rounded-2xl border border-border bg-card/50">
+                  <div className="relative p-3 rounded-2xl border border-[hsl(0_0%_100%/0.1)] bg-[hsl(240_4%_16%/0.5)] backdrop-blur-xl">
                     <div className="relative overflow-hidden rounded-xl">
                       <img
                         src={authorPhoto} 
@@ -92,35 +87,35 @@ export const HeroSection = () => {
                 </div>
 
                 {/* Floating panels */}
-                <div className="absolute -top-4 -left-4 p-3 rounded-xl bg-card border border-border shadow-lg">
+                <div className="absolute -top-4 -left-4 p-3 rounded-xl bg-[hsl(240_4%_16%/0.6)] backdrop-blur-xl border border-[hsl(0_0%_100%/0.1)] shadow-lg">
                   <div className="flex items-center gap-2">
                     <Lightbulb size={18} className="text-primary" strokeWidth={1.5} />
                     <span className="text-xs font-semibold tracking-wide">ИДЕЯ</span>
                   </div>
                 </div>
 
-                <div className="absolute top-1/4 -right-6 p-3 rounded-xl bg-card border border-border shadow-lg">
+                <div className="absolute top-1/4 -right-6 p-3 rounded-xl bg-[hsl(240_4%_16%/0.6)] backdrop-blur-xl border border-[hsl(0_0%_100%/0.1)] shadow-lg">
                   <div className="flex items-center gap-2">
                     <Camera size={18} className="text-primary" strokeWidth={1.5} />
                     <span className="text-xs font-semibold tracking-wide">ФОТО</span>
                   </div>
                 </div>
 
-                <div className="absolute bottom-1/3 -left-8 p-3 rounded-xl bg-card border border-border shadow-lg">
+                <div className="absolute bottom-1/3 -left-8 p-3 rounded-xl bg-[hsl(240_4%_16%/0.6)] backdrop-blur-xl border border-[hsl(0_0%_100%/0.1)] shadow-lg">
                   <div className="flex items-center gap-2">
                     <Video size={18} className="text-primary" strokeWidth={1.5} />
                     <span className="text-xs font-semibold tracking-wide">ВИДЕО</span>
                   </div>
                 </div>
 
-                <div className="absolute -bottom-4 right-1/4 p-3 rounded-xl bg-card border border-border shadow-lg">
+                <div className="absolute -bottom-4 right-1/4 p-3 rounded-xl bg-[hsl(240_4%_16%/0.6)] backdrop-blur-xl border border-[hsl(0_0%_100%/0.1)] shadow-lg">
                   <div className="flex items-center gap-2">
                     <Music size={18} className="text-primary" strokeWidth={1.5} />
                     <span className="text-xs font-semibold tracking-wide">ЗВУК</span>
                   </div>
                 </div>
 
-                <div className="absolute bottom-1/4 -right-4 p-3 rounded-xl bg-card border border-border shadow-lg">
+                <div className="absolute bottom-1/4 -right-4 p-3 rounded-xl bg-[hsl(240_4%_16%/0.6)] backdrop-blur-xl border border-[hsl(0_0%_100%/0.1)] shadow-lg">
                   <div className="flex items-center gap-2">
                     <Mic size={18} className="text-primary" strokeWidth={1.5} />
                     <span className="text-xs font-semibold tracking-wide">РЕЧЬ</span>

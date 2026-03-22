@@ -22,7 +22,7 @@ export const FAQSection = () => {
 
   return (
     <>
-      <section id="faq" className="section-padding bg-secondary/30">
+      <section id="faq" className="section-padding">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <ScrollReveal direction="left">
