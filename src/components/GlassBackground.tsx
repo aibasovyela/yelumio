@@ -50,16 +50,16 @@ function Ribbon({
       <meshPhysicalMaterial
         ref={materialRef}
         color={color}
-        roughness={0.15}
-        metalness={0.6}
-        clearcoat={1}
-        clearcoatRoughness={0.1}
-        transmission={0.3}
-        thickness={1.5}
-        ior={1.5}
-        envMapIntensity={1.2}
+        roughness={0.3}
+        metalness={0.4}
+        clearcoat={0.6}
+        clearcoatRoughness={0.2}
+        transmission={0.1}
+        thickness={1}
+        ior={1.4}
+        envMapIntensity={0.6}
         transparent
-        opacity={0.85}
+        opacity={0.35}
         side={THREE.DoubleSide}
       />
     </mesh>
@@ -148,11 +148,11 @@ function RibbonScene() {
   return (
     <>
       {/* Lighting for glossy reflections */}
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-      <directionalLight position={[-3, 2, 4]} intensity={0.6} color="#FFE599" />
-      <pointLight position={[0, 0, 3]} intensity={0.8} color="#FFCC00" distance={12} />
-      <pointLight position={[-4, -2, 2]} intensity={0.4} color="#FFD633" distance={10} />
+      <ambientLight intensity={0.15} />
+      <directionalLight position={[5, 5, 5]} intensity={0.6} color="#ffffff" />
+      <directionalLight position={[-3, 2, 4]} intensity={0.3} color="#FFE599" />
+      <pointLight position={[0, 0, 3]} intensity={0.4} color="#FFCC00" distance={12} />
+      <pointLight position={[-4, -2, 2]} intensity={0.2} color="#FFD633" distance={10} />
 
       {ribbons.map((r, i) => (
         <Ribbon
@@ -180,7 +180,7 @@ export const GlassBackground = () => {
         }}
       />
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 50 }}
+        camera={{ position: [0, 0, 8], fov: 50 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
