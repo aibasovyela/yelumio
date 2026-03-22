@@ -33,16 +33,11 @@ const Index = () => {
           <div className="section-light">
             <ShowcaseSection />
           </div>
-          <div id="module0" className="section-dark">
-            <Module0Section />
-          </div>
+          {/* Module0Section hidden */}
+          {/* HowItWorksSection hidden */}
 
           <div id="program" className="section-light">
             <CourseProgramSection />
-          </div>
-          
-          <div className="section-light">
-            <HowItWorksSection />
           </div>
           
           {/* WhyNowSection hidden */}
