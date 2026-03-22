@@ -16,10 +16,14 @@ export const GlassCard = ({
 }: GlassCardProps) => {
   return (
     <div className={cn(
-      "rounded-xl p-6 md:p-8 border border-border bg-card text-card-foreground transition-all duration-300",
-      hover && "hover:border-primary/20 hover:shadow-[0_0_30px_hsl(var(--primary)/0.06)]",
+      "relative overflow-hidden rounded-2xl p-6 md:p-8 text-card-foreground transition-all duration-400",
+      "bg-[hsl(240_4%_16%/0.6)] backdrop-blur-xl border border-[hsl(0_0%_100%/0.1)]",
+      "shadow-[0_8px_32px_hsl(0_0%_0%/0.2),inset_0_1px_0_hsl(0_0%_100%/0.06)]",
+      hover && "hover:border-primary/25 hover:shadow-[0_8px_40px_hsl(48_100%_50%/0.1),inset_0_1px_0_hsl(0_0%_100%/0.08)] hover:-translate-y-0.5",
       className
     )}>
+      {/* Top shine line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[hsl(0_0%_100%/0.15)] to-transparent" />
       {children}
     </div>
   );
